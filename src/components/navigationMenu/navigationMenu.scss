@@ -1,0 +1,44 @@
+nav {
+  position: relative;
+  display: -webkit-flex;
+  display: grid;
+  z-index: 10;
+  height:62px;
+  grid-template-areas: "logo menu";
+  grid-template-columns:60px 1fr;
+  ul {
+    grid-area:menu;
+    list-style-type:none;
+    display: flex;
+    justify-content: flex-end;
+  }
+  li:first-child {
+
+  }
+  a.App-logo {
+    grid-area:logo;
+    text-decoration: none;
+    width:27px;
+    margin-top: 28px;
+    margin-left:0;
+  }
+  a {
+
+    margin: 20px 0px 27px 55px;
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    position:relative;
+    &:before {
+      content:'';
+      position:absolute;
+      bottom:-10px;
+      width:15px;
+      height:3px;
+      background: transparent;
+    }
+    &:hover::before {
+      background: #ffffff;
+    }
+  }
+}
