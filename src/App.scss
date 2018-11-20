@@ -99,8 +99,8 @@ $media-direction: min;
 
 .App>div>div>div {
   @include media((
-          height:(xs:auto!important, sm:100vh),
-          min-height:(xs:100vh!important, sm:auto)
+          height:(xs:auto!important, sm:100vh!important),
+          min-height:(xs:100vh!important, sm:auto!important)
   ));
 }
 .App-header {
