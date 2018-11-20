@@ -1,44 +1,204 @@
+@import '../../mixin';
+
+$media-direction: min;
+
 nav {
-  position: relative;
-  display: -webkit-flex;
-  display: grid;
+  position: fixed;
   z-index: 10;
-  height:62px;
-  grid-template-areas: "logo menu";
-  grid-template-columns:60px 1fr;
-  ul {
-    grid-area:menu;
-    list-style-type:none;
-    display: flex;
-    justify-content: flex-end;
+  width: 100%;
+  &:before {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: '';
+    right: -100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
   }
-  li:first-child {
+  .menu-grid {
+    display: -webkit-flex;
+    display: grid;
+    @include media((
+            grid-template-areas:(xs:"logo burger" ". .", sm:"logo menu" ". ."),
+            padding:(xs:0 0, sm:0)
+    ));
+    grid-template-columns: 60px 1fr;
+    .menu {
+      grid-area: menu;
+      justify-self: flex-end;
 
-  }
-  a.App-logo {
-    grid-area:logo;
-    text-decoration: none;
-    width:27px;
-    margin-top: 28px;
-    margin-left:0;
-  }
-  a {
-
-    margin: 20px 0px 27px 55px;
-    color: #fff;
-    display: block;
-    text-decoration: none;
-    position:relative;
-    &:before {
-      content:'';
-      position:absolute;
-      bottom:-10px;
-      width:15px;
-      height:3px;
-      background: transparent;
+      @include media((
+              display:(xs:block, sm:flex),
+              position:(xs: fixed, sm:relative),
+              right:(xs:-100%, sm:0),
+              width:(xs:100%, sm:auto),
+              height:(xs:100%, sm:auto),
+              background:(xs:#ebebeb, sm:transparent)
+      ));
+      ul {
+        list-style-type: none;
+        justify-content: flex-end;
+        display: flex;
+        a {
+          margin: 20px 0px 27px 55px;
+          color: #fff;
+          display: block;
+          text-decoration: none;
+          position: relative;
+          &:before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            width: 0px;
+            height: 3px;
+            -webkit-transition: width 0.5s ease-out;
+            -moz-transition: width 0.5s ease-out;
+            -o-transition: width 0.5s ease-out;
+            transition: width 0.5s ease-out;
+            background: #ffffff;
+          }
+          &:hover::before {
+            width: 15px;
+          }
+          &.active:before  {
+            width: 15px;
+          }
+        }
+      }
     }
-    &:hover::before {
-      background: #ffffff;
+
+    a.App-logo {
+      grid-area: logo;
+      text-decoration: none;
+      width: 27px;
+      margin-top: 28px;
+      margin-left: 0;
+      font-size: 27px;
+      &:before {
+        content: inherit;
+        color: white;
+      }
+      background:#fff;
+      mask:url(../../static/images/logo.svg) no-repeat;
+    }
+
+    &.invert {
+      a.App-logo {
+        background:#CC2F31;
+        &:before {
+          color: #CC2F31;
+        }
+      }
+      ul {
+        a {
+          color: black;
+          &:before {
+            background: black;
+          }
+        }
+      }
+
+      .menu-icon {
+        border: 1px solid #CC2F31;
+      }
     }
   }
 }
+
+$menu-icon-size: 26px;
+$menu-icon-dash-width: 8px; //em(4.5rem, 6rem)
+$menu-icon-dash-height: 1px; //em(0.3rem, 6rem)
+$menu-icon-dash-gutter: $menu-icon-dash-height * 4;
+$menu-icon-dash-color: #ffffff;
+$menu-icon-dash-border-radius: 0;
+
+%menu-dash {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: ($menu-icon-size - $menu-icon-dash-width) / 2; // center X
+  background-color: $menu-icon-dash-color;
+  width: $menu-icon-dash-width;
+  height: $menu-icon-dash-height;
+  border-radius: $menu-icon-dash-border-radius;
+}
+
+.menu-icon {
+  @include media((
+          display:(xs:inline-block, sm:none)
+  ));
+  grid-area: burger;
+  font-size: $menu-icon-size;
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+  border: 1px solid white;
+
+  padding: 0;
+  outline: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  cursor: pointer;
+  justify-self: flex-end;
+
+  span {
+    @extend %menu-dash;
+    margin-top: $menu-icon-dash-height/-2;
+  }
+
+  &:before {
+    content: "";
+    @extend %menu-dash;
+    margin-top: -$menu-icon-dash-gutter + ($menu-icon-dash-height/-2);
+  }
+
+  &:after {
+    content: "";
+    @extend %menu-dash;
+    margin-top: $menu-icon-dash-gutter + ($menu-icon-dash-height/-2);
+  }
+}
+
+// Example 1
+// =============================================
+.cross {
+  span {
+    transition: 0.2s ease-in-out 0.2s;
+  }
+
+  &:before, &:after {
+    transition: margin 0.2s ease-in-out 0.2s, transform 0.2s ease-in-out 0s;
+  }
+
+  &.is-open {
+    span {
+      background-color: rgba($menu-icon-dash-color, 0);
+      transition-delay: 0s;
+    }
+
+    &:before, &:after {
+      margin-top: 0;
+      transition-delay: 0s, 0.25s, 0.25s;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.menu-icon, .menu-icon-svg {
+  margin: 2rem 0;
+}
+
