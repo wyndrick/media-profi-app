@@ -23,29 +23,69 @@ nav {
     display: -webkit-flex;
     display: grid;
     @include media((
-            grid-template-areas:(xs:"logo burger" ". .", sm:"logo menu" ". ."),
             padding:(xs:0 0, sm:0)
     ));
     grid-template-columns: 60px 1fr;
-    .menu {
-      grid-area: menu;
-      justify-self: flex-end;
+    grid-template-rows: 60px 1fr;
 
+    &.opened {
+      .menu {
+        left: 0;
+      }
+
+      .menu-icon {
+        border: 1px solid black!important;
+      }
+    }
+
+    .menu {
+      a.App-logo {
+        background: #CC2F31;
+        @include media((
+                display:(xs:block, sm:none)
+        ));
+        margin-left:45px;
+      }
+      justify-self: flex-end;
+      -webkit-transition: left 0.5s ease-in-out;
+      -moz-transition: left 0.5s ease-in-out;
+      -o-transition: left 0.5s ease-in-out;
+      transition: left 0.5s ease-in-out;
       @include media((
-              display:(xs:block, sm:flex),
+              display:(xs:grid, sm:flex),
               position:(xs: fixed, sm:relative),
-              right:(xs:-100%, sm:0),
+              left:(xs:100%, sm:0),
               width:(xs:100%, sm:auto),
               height:(xs:100%, sm:auto),
-              background:(xs:#ebebeb, sm:transparent)
+              background:(xs:#ebebeb, sm:transparent),
+              grid-row:(xs:1, sm:1),
+              grid-template-rows:(xs:120px min-content, sm:120px 200px),
+              grid-column:(xs:1 / span 2, sm:2)
       ));
       ul {
+
+        padding: 0;
+        @include media((
+                justify-content:(xs:center, sm:flex-end),
+                display:(xs:grid, sm:flex),
+                grid-template-columns:(xs:1fr, sm:inherit),
+                text-align:(xs:center, sm:left),
+        ));
+
         list-style-type: none;
-        justify-content: flex-end;
         display: flex;
+        li {
+          @include media((
+                  justify-content:(xs:center, sm:flex-end)
+          ));
+        }
         a {
-          margin: 20px 0px 27px 55px;
-          color: #fff;
+          @include media((
+                  margin:(xs: 20px 0px 25px 0, sm: 20px 0px 27px 55px),
+                  color:(xs: black, sm: #fff),
+                  display:(xs:grid, sm:flex),
+                  grid-template-columns:(xs:1fr, sm:inherit),
+          ));
           display: block;
           text-decoration: none;
           position: relative;
@@ -59,12 +99,14 @@ nav {
             -moz-transition: width 0.5s ease-out;
             -o-transition: width 0.5s ease-out;
             transition: width 0.5s ease-out;
-            background: #ffffff;
+            @include media((
+                    background:(xs:transparent!important, sm: #ffffff)
+            ));
           }
           &:hover::before {
             width: 15px;
           }
-          &.active:before  {
+          &.active:before {
             width: 15px;
           }
         }
@@ -72,7 +114,8 @@ nav {
     }
 
     a.App-logo {
-      grid-area: logo;
+      grid-row: 1;
+      grid-column: 1;
       text-decoration: none;
       width: 27px;
       margin-top: 28px;
@@ -82,13 +125,17 @@ nav {
         content: inherit;
         color: white;
       }
-      background:#fff;
-      mask:url(../../static/images/logo.svg) no-repeat;
+      background: #fff;
+      mask: url(../../static/images/logo.svg) no-repeat;
     }
 
+    .menu-icon {
+      grid-row: 1;
+      grid-column: 2;
+    }
     &.invert {
       a.App-logo {
-        background:#CC2F31;
+        background: #CC2F31;
         &:before {
           color: #CC2F31;
         }
@@ -125,9 +172,19 @@ $menu-icon-dash-border-radius: 0;
   width: $menu-icon-dash-width;
   height: $menu-icon-dash-height;
   border-radius: $menu-icon-dash-border-radius;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.opened {
+  .menu-icon {
+    &:before, &:after {
+      background-color: black!important;
+    }
+  }
 }
 
 .menu-icon {
+  transition: border 0.5s ease-in-out;
   @include media((
           display:(xs:inline-block, sm:none)
   ));
@@ -166,6 +223,11 @@ $menu-icon-dash-border-radius: 0;
   }
 }
 
+.invert {
+  %menu-dash {
+    background: #CC2F31;
+  }
+}
 // Example 1
 // =============================================
 .cross {
@@ -198,7 +260,7 @@ $menu-icon-dash-border-radius: 0;
   }
 }
 
-.menu-icon, .menu-icon-svg {
+.menu-icon {
   margin: 2rem 0;
 }
 

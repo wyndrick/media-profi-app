@@ -9,7 +9,7 @@ class NavigationMenu extends Component {
     pages = [2, 3, 9, 10];
 
     setActivePage(pageNumber) {
-        var elems = document.getElementsByClassName('menu')[0].children[0].children
+        var elems = document.getElementsByClassName('menu')[0].children[1].children
         for (var i = 0; i < elems.length; i++) {
             console.log(elems[i]);
             elems[i].children[0].classList.remove('active')
@@ -23,6 +23,9 @@ class NavigationMenu extends Component {
     toggleIsOpen() {
         let element = document.getElementsByClassName("menu-icon")[0];
         element.classList.toggle("is-open");
+
+        let menu = document.getElementsByClassName("menu-grid")[0];
+        menu.classList.toggle("opened")
     }
 
     toggleDefault() {
@@ -42,6 +45,7 @@ class NavigationMenu extends Component {
                     <div className="menu-grid">
                         <a href="#" className='App-logo' onClick={(e) => {this.props.handlePageClick(0); e.preventDefault(); return false;}}></a>
                         <div className={'menu'}>
+                            <a href="#" className='App-logo' onClick={(e) => {this.props.handlePageClick(0); e.preventDefault(); return false;}}></a>
                             <ul>
                                 <li><a href="#services" className={'active'} onClick={(e) => {this.props.handlePageClick(1); e.preventDefault(); return false;}}>Услуги</a></li>
                                 <li><a href="#about" onClick={(e) => {this.props.handlePageClick(2);e.preventDefault();  return false;}}>О компании</a></li>

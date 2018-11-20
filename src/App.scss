@@ -468,7 +468,9 @@ $media-direction: min;
       font-weight: normal;
       margin: 0;
       @include media((
-              padding:(xs:5px 0 0 0, sm:5px 0px 0px 0px, md:5px 100px 0 100px, lg:5px 150px 0 150px)
+              padding:(xs:5px 0 0 0, sm:5px 0px 0px 0px, md:5px 100px 0 100px, lg:5px 150px 0 150px),
+              font-size:(xs:24px ,sm:40px),
+              line-height:(xs:32px ,sm:48px)
       ));
     }
 
@@ -882,7 +884,9 @@ $media-direction: min;
 .pagination-list {
 
   display: grid;
-  grid-template-columns: 65px 65px 65px;
+  grid-template-columns: 65px ;
+  grid-auto-flow: column;
+  padding:0;
   grid-gap: 28px;
   justify-content: center;
 
