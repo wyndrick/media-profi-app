@@ -18,8 +18,14 @@ import Contacts from "./containers/contacts/contacts";
 
 class App extends React.Component {
 
-    goToPage = pageNumber => {
-        this.reactPageScroll.goToPage(pageNumber)
+    lastPage = 0
+
+    goToPage = (e, pageId) => {
+        console.log(pageId)
+        if (this.navigationMenu.pages.hasOwnProperty(pageId)) {
+            let page = this.navigationMenu.pages[pageId];
+            this.reactPageScroll.goToPage(page.index)
+        }
     }
 
     disableHandlePageScroller = e => {
@@ -40,52 +46,58 @@ class App extends React.Component {
             element.addEventListener("scroll",(e) => { this.removeListeners(element,e) })
         }
         console.log(window.innerWidth)
+
+        let timeout = 900;
+        if (this.lastPage > pageNumber) {
+            timeout = 100;
+        }
         switch (pageNumber) {
             case 1:
                 this.pageID = "header"
-                setTimeout(this.navigationMenu.toggleDefault, 1000)
+                setTimeout(this.navigationMenu.toggleDefault, timeout)
                 break
             case 2:
                 this.pageID = "services"
-                setTimeout(this.navigationMenu.toggleInvert, 1000)
+                setTimeout(this.navigationMenu.toggleInvert, timeout)
                 break
             case 3:
                 this.pageID = "about"
-                setTimeout(this.navigationMenu.toggleInvert, 1000)
+                setTimeout(this.navigationMenu.toggleInvert, timeout)
+                this.pageAbout.onShow();
                 if (window.innerWidth < 768) {
                     addListeners(document.getElementById(this.pageID))
                 }
                 break
             case 4:
                 this.pageID = "design"
-                setTimeout(this.navigationMenu.toggleInvert, 1000)
+                setTimeout(this.navigationMenu.toggleInvert, timeout)
                 break
             case 5:
                 this.pageID = "event"
-                setTimeout(this.navigationMenu.toggleInvert, 1000)
+                setTimeout(this.navigationMenu.toggleInvert, timeout)
                 break
             case 6:
                 this.pageID = "site"
-                setTimeout(this.navigationMenu.toggleInvert, 1000)
+                setTimeout(this.navigationMenu.toggleInvert, timeout)
                 break
             case 7:
                 this.pageID = "video"
-                setTimeout(this.navigationMenu.toggleInvert, 1000)
+                setTimeout(this.navigationMenu.toggleInvert, timeout)
                 break
             case 8:
                 this.pageID = "ar"
-                setTimeout(this.navigationMenu.toggleInvert, 1000)
+                setTimeout(this.navigationMenu.toggleInvert, timeout)
                 if (window.innerWidth < 768) {
                     addListeners(document.getElementById(this.pageID))
                 }
                 break
             case 9:
                 this.pageID = "clients"
-                setTimeout(this.navigationMenu.toggleInvert, 1000)
+                setTimeout(this.navigationMenu.toggleInvert, timeout)
                 break
             case 10:
                 this.pageID = "footer"
-                setTimeout(this.navigationMenu.toggleDefault, 1000)
+                setTimeout(this.navigationMenu.toggleDefault, timeout)
                 if (window.innerWidth < 768) {
                     addListeners(document.getElementById(this.pageID))
                 }
@@ -93,7 +105,30 @@ class App extends React.Component {
             default:
                 break
         }
-        this.navigationMenu.setActivePage(pageNumber)
+        this.lastPage = pageNumber;
+        this.navigationMenu.setActivePage(this.pageID)
+    }
+
+    servicesChangeImage = (index) => {
+        let images = document.getElementsByClassName("service-info-art")[0].children;
+        for (let i = 0; i < images.length; i++) {
+            images[i].classList.remove("active");
+        }
+        images[index].classList.add("active")
+    }
+
+
+    servicesSlide = index => {
+        let elem = document.getElementById("service-list");
+        let nextIndex = index;
+        if (elem.children[index].classList.contains("past") === false) {
+            nextIndex += 1;
+        }
+        elem.children[index].classList.toggle("past")
+        const percent = nextIndex * -100;
+        const offset = nextIndex * 90;
+        elem.style.transform = "translateX(calc(" + percent + "% + " + offset + "px))"
+        this.servicesChangeImage(nextIndex);
     }
 
     render() {
@@ -101,11 +136,13 @@ class App extends React.Component {
             <Main title="Медиа">
                 <div className="App">
                     <NavigationMenu ref={c => this.navigationMenu = c}
-                                    handlePageClick={(pageNumber) => this.goToPage(pageNumber)}/>
+                                    handlePageClick={(e, id) => this.goToPage(e, id)}/>
                     <ReactPageScroller  ref={c => {this.reactPageScroll = c;}} pageOnChange={this.onChangePage}>
                     <Header goToPage={this.goToPage}/>
-                    <Services/>
-                    <About/>
+                        <Services slide={(index) => this.servicesSlide(index)}
+                                  servicesChangeImage={(index) => this.servicesChangeImage(index)}
+                                  onServiceClick={(e, id) => this.goToPage(e, id)}/>
+                    <About ref={c => this.pageAbout = c}/>
                     <Design/>
                     <Event/>
                     <Site/>
@@ -118,6 +155,7 @@ class App extends React.Component {
             </Main>
         )
     }
+
 }
 
 export default App;

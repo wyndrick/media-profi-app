@@ -13,7 +13,7 @@ const Header = props => {
                             бизнес-ориентированные решения, которые помогают достичь поставленных
                             результатов.</p>
                         <div className='btn-scroll'>
-                            <div onClick={(e) => {props.scrollTo("services"); e.preventDefault(); return false;}}>ПОДРОБНЕЕ</div>
+                            <div onClick={(e) => {props.goToPage("services"); e.preventDefault(); return false;}}>ПОДРОБНЕЕ</div>
                         </div>
                         <img alt="" className={'header-art'} src={header_art}/>
                     </div>

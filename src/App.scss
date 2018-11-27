@@ -7,6 +7,7 @@
 textarea:focus, input:focus {
   outline: none;
 }
+
 $media-direction: min;
 
 // Сетка
@@ -32,9 +33,8 @@ $media-direction: min;
   ));
 }
 
-
 .btn-scroll {
-  position:relative;
+  position: relative;
   width: 21px;
   height: 42px;
   margin-left: -2px;
@@ -97,12 +97,13 @@ $media-direction: min;
   }
 }
 
-.App>div>div>div {
+.App > div > div > div {
   @include media((
-          height:(xs:auto!important, sm:100vh!important),
-          min-height:(xs:100vh!important, sm:auto!important)
+          height:(xs:auto !important, sm:100vh !important),
+          min-height:(xs:100vh !important, sm:auto !important)
   ));
 }
+
 .App-header {
   position: relative;
   display: grid;
@@ -135,7 +136,7 @@ $media-direction: min;
     @include media((
             height:(xs:auto, sm:calc(100vh - 160px)),
             min-height:(xs:calc(100vh - 160px), sm:auto),
-            //grid-template-areas:(xs:"info" "description" "art" "art", sm:". art" "info art" "description art" "btn-scroll art"),
+      //grid-template-areas:(xs:"info" "description" "art" "art", sm:". art" "info art" "description art" "btn-scroll art"),
             grid-template-rows:(xs:150px 200px 1fr, sm:1fr 150px 200px 1fr)
     ));
     grid-template-columns: 305px 1fr;
@@ -149,7 +150,7 @@ $media-direction: min;
       margin: 0;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      grid-column:1;
+      grid-column: 1;
 
       @include media((
               grid-row:(xs:1, sm:2),
@@ -160,7 +161,7 @@ $media-direction: min;
       //grid-area: description;
       font-size: 18px;
       line-height: 22px;
-      grid-column:1;
+      grid-column: 1;
       @include media((
               grid-row:(xs:2, sm:3),
       ));
@@ -170,19 +171,19 @@ $media-direction: min;
       position: relative;
       z-index: 5;
       //grid-area: art;
-      height:100%;
+      height: 100%;
       object-fit: contain;
       @include media((
               justify-self:(xs:auto, sm:flex-start, md:flex-start, lg:flex-start, xl:flex-end),
               grid-row:(xs:3, sm:1 / span 4),
               grid-column:(xs:1, sm:2),
       ));
-      max-height:100%;
+      max-height: 100%;
     }
-    .btn-scroll{
+    .btn-scroll {
 
-      grid-column:1;
-      grid-row:4;
+      grid-column: 1;
+      grid-row: 4;
       justify-self: flex-start;
       align-self: flex-end;
       //grid-area:btn-scroll;
@@ -231,6 +232,10 @@ $media-direction: min;
           display: grid;
           list-style-type: none;
           padding: 0;
+          -webkit-transition: transform 0.5s ease-out;
+          -moz-transition: transform 0.5s ease-out;
+          -o-transition: transform 0.5s ease-out;
+          transition: transform 0.5s ease-out;
           @include media((
                   grid-template-columns: (
                           xs:inherit,
@@ -247,7 +252,7 @@ $media-direction: min;
                   grid-gap: (xs:0, sm: 28px 40px)
           ));
 
-          li {
+          .service-info {
             padding: 0;
             @include media((
                     grid-row: (
@@ -293,6 +298,16 @@ $media-direction: min;
                       display:(xs: block, sm:none)
               ));
             }
+
+            &.past {
+              .right-chevron {
+                &:before {
+                  transform: rotate(225deg);
+                  left: calc(50% + 6px);
+                }
+              }
+            }
+
             &:last-child .right-chevron {
               display: none;
             }
@@ -312,7 +327,7 @@ $media-direction: min;
       margin-top: 26px;
     }
   }
-  .art {
+  .service-info-art {
     @include media((
             width:(sm:100%, md:655px, lg:660px),
             justify-self: (xs:center, sm:center)
@@ -320,9 +335,38 @@ $media-direction: min;
 
     align-self: flex-end;
     grid-area: art;
+    display: grid;
+    &:nth-child(1) {
+      z-index: 1;
+    }
+    &:nth-child(2) {
+      z-index: 2;
+    }
+    &:nth-child(3) {
+      z-index: 3;
+    }
+    &:nth-child(4) {
+      z-index: 4;
+    }
+    &:nth-child(5) {
+      z-index: 5;
+    }
     img {
       width: 100%;
       object-fit: cover;
+      grid-column: 1;
+      max-height:280px;
+      grid-row: 1;
+      opacity:0;
+
+      -webkit-transition: opacity 1s ease-in-out;
+      -moz-transition: opacity 1s ease-in-out;
+      -o-transition: opacity 1s ease-in-out;
+      transition: opacity 1s ease-in-out;
+
+      &.active {
+        opacity:1;
+      }
     }
   }
   h2 {
@@ -424,8 +468,8 @@ $media-direction: min;
       margin: 0;
       @include media((
               padding:(xs:5px 0 0 0, sm:5px 0px 0px 0px, md:5px 100px 0 100px, lg:5px 150px 0 150px),
-              font-size:(xs:24px ,sm:40px),
-              line-height:(xs:32px ,sm:48px)
+              font-size:(xs:24px, sm:40px),
+              line-height:(xs:32px, sm:48px)
       ));
     }
 
@@ -571,8 +615,8 @@ $media-direction: min;
             text-align: center;
             font-weight: normal;
 
-            position:relative;
-            top:0px;
+            position: relative;
+            top: 0px;
             -webkit-transition: top 0.2s ease-out;
             -moz-transition: top 0.2s ease-out;
             -o-transition: top 0.2s ease-out;
@@ -589,8 +633,8 @@ $media-direction: min;
             text-decoration: none;
             font-weight: normal;
 
-            position:relative;
-            top:10px;
+            position: relative;
+            top: 10px;
             filter: alpha(opacity=60);
             -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
             opacity: 0;
@@ -618,16 +662,14 @@ $media-direction: min;
           -o-transition: padding 0.3s ease-out;
           transition: padding 0.3s ease-out;
 
-
-
           .wrapper {
             border-radius: 10px;
             -webkit-transition: -webkit-box-shadow 0.3s ease-out;
             -moz-transition: -moz-box-shadow 0.3s ease-out;
             -o-transition: box-shadow 0.3s ease-out;
             transition: box-shadow 0.3s ease-out;
-            overflow:hidden;
-            position:relative;
+            overflow: hidden;
+            position: relative;
             &:before {
               content: '';
               width: 200%;
@@ -652,13 +694,13 @@ $media-direction: min;
 
               bottom: -90px;
               //
-              transition: bottom 0.3s ease-in-out;//
+              transition: bottom 0.3s ease-in-out; //
               //transition: bottom 0.2s ease-in-out;
               //transition: border 0.2s ease-in-out;
             }
           }
 
-          &.selected, &:hover{
+          &.selected, &:hover {
             padding: 0px;
             .wrapper {
               border-radius: 10px;
@@ -670,13 +712,13 @@ $media-direction: min;
                 bottom: -46px;
               }
               h3 {
-                top:-10px;
+                top: -10px;
               }
               .more {
                 color: #ffffff;
-                opacity:0.6;
-                position:relative;
-                top:0px;
+                opacity: 0.6;
+                position: relative;
+                top: 0px;
               }
             }
           }
@@ -833,7 +875,7 @@ $media-direction: min;
       padding-bottom: 20px;
       a {
         img {
-          max-width:100%;
+          max-width: 100%;
         }
       }
     }
@@ -843,9 +885,9 @@ $media-direction: min;
 .pagination-list {
 
   display: grid;
-  grid-template-columns: 65px ;
+  grid-template-columns: 65px;
   grid-auto-flow: column;
-  padding:0;
+  padding: 0;
   grid-gap: 28px;
   justify-content: center;
 
@@ -856,6 +898,7 @@ $media-direction: min;
     height: 20px;
     paddnig: 0 14px;
     a {
+      text-decoration: none;
       height: 20px;
       display: block;
     }
@@ -871,7 +914,7 @@ $media-direction: min;
   overflow-x: hidden;
   display: grid;
   align-items: center;
-  grid-template-columns:minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   position: relative;
   font-size: calc(15px);
   color: white;
@@ -909,9 +952,9 @@ $media-direction: min;
             ),
             grid-template-columns: (
                     xs:1fr,
-                    sm:minmax(0, 1fr) minmax(0,1fr) minmax(0, 30px) minmax(0, 1fr) minmax(0, 1fr),
-                    md:minmax(0, 1fr) minmax(0,1fr) minmax(0, 90px) minmax(0, 1fr) minmax(0, 1fr),
-                    lg:minmax(0, 1fr) minmax(0,1fr) minmax(0, 180px) minmax(0, 1fr) minmax(0, 1fr)
+                    sm:minmax(0, 1fr) minmax(0, 1fr) minmax(0, 30px) minmax(0, 1fr) minmax(0, 1fr),
+                    md:minmax(0, 1fr) minmax(0, 1fr) minmax(0, 90px) minmax(0, 1fr) minmax(0, 1fr),
+                    lg:minmax(0, 1fr) minmax(0, 1fr) minmax(0, 180px) minmax(0, 1fr) minmax(0, 1fr)
             ),
             grid-template-rows: (
                     xs:100px repeat(5, auto),
@@ -922,7 +965,7 @@ $media-direction: min;
       grid-area: title;
     }
     .contact-form {
-      grid-area:form;
+      grid-area: form;
     }
     h2 {
       font-size: 40px;
@@ -973,9 +1016,8 @@ $media-direction: min;
       }
     }
 
-
     .cutaway {
-      grid-area:cutaway;
+      grid-area: cutaway;
       display: grid;
       grid-template-areas: 'img' 'contacts' 'move-to-top';
       grid-template-columns: 1fr;
@@ -983,9 +1025,9 @@ $media-direction: min;
       justify-items: right;
       img {
         grid-area: img;
-        max-height:100%;
-        max-width:100%;
-        height:250px;
+        max-height: 100%;
+        max-width: 100%;
+        height: 250px;
         justify-self: right;
         object-fit: contain;
       }
@@ -1042,7 +1084,6 @@ $media-direction: min;
   grid-template-rows: repeat(4, 66px);
   @include media((
           grid-template-columns: (xs:1fr, sm:repeat(2, 1fr), md:repeat(2, 1fr)),
-
           grid-template-areas: (
                   xs:'name' 'phone' 'message' 'button-send',
                   sm:'name phone' 'message message' '. button-send',
@@ -1050,7 +1091,6 @@ $media-direction: min;
   ));
 
   justify-items: center;
-
 
   .input-name {
     grid-area: name;

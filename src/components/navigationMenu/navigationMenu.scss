@@ -30,7 +30,10 @@ nav {
 
     &.opened {
       .menu {
-        left: 0;
+        @include media((
+                transform:(xs:translateX(-100%), sm:translateX(0)),
+                -webkit-transform:(xs:translateX(-100%), sm:translateX(0))
+        ));
       }
 
       .menu-icon {
@@ -47,10 +50,14 @@ nav {
         margin-left:45px;
       }
       justify-self: flex-end;
-      -webkit-transition: left 0.5s ease-in-out;
-      -moz-transition: left 0.5s ease-in-out;
-      -o-transition: left 0.5s ease-in-out;
-      transition: left 0.5s ease-in-out;
+
+      @include media((
+              transition:(xs:transform 0.5s ease-in-out, sm:none),
+              -webkit-transition:(xs:transform 0.5s ease-in-out, sm:none),
+              -moz-transition:(xs:transform 0.5s ease-in-out, sm:none),
+              -o-transition:(xs:transform 0.5s ease-in-out, sm:none)
+
+      ));
       @include media((
               display:(xs:grid, sm:flex),
               position:(xs: fixed, sm:relative),
@@ -100,7 +107,7 @@ nav {
             -o-transition: width 0.5s ease-out;
             transition: width 0.5s ease-out;
             @include media((
-                    background:(xs:transparent, sm: #ffffff!important)
+                    background:(xs:transparent!important, sm: #ffffff!important)
             ));
           }
           &:hover::before {
@@ -144,7 +151,9 @@ nav {
         a {
           color: black;
           &:before {
-            background: black;
+            @include media((
+                    background:(xs:transparent!important, sm: #000000!important)
+            ));
           }
         }
       }

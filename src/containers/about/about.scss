@@ -19,7 +19,7 @@ $media-direction: min;
   //        min-height:(xs:100vh, sm:auto)
   //));
   height: 100vh;
-  overflow: scroll;
+  overflow-y:scroll;
   background: #ffffff;
   display: grid;
   align-items: center;
