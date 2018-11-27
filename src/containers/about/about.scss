@@ -1,0 +1,99 @@
+@import '../../mixin';
+
+@keyframes fadeLeft {
+  from {
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+$media-direction: min;
+
+.App-content {
+  //@include media((
+  //        height:(xs:auto, sm:100vh),
+  //        min-height:(xs:100vh, sm:auto)
+  //));
+  height: 100vh;
+  overflow: scroll;
+  background: #ffffff;
+  display: grid;
+  align-items: center;
+  &.about {
+    background: #ebebeb;
+    .content {
+      display: grid;
+      grid-gap: 15px 30px;
+      padding-bottom: 40px;
+      @include media((
+              grid-column-start: (xs:span 2, sm:span 2),
+              grid-template-columns: (xs:repeat(2, minmax(0, 1fr)), sm:repeat(4, minmax(0, 1fr)))
+      ));
+      .content-header {
+        grid-area: inherit;
+        @include media((
+                margin-bottom:(xs:0px, sm:70px)
+        ));
+      }
+      .reward-info {
+        align-self: center;
+        img {
+          width: 46px;
+          @include media((
+                  padding-top:(xs:20px, sm:100px)
+          ));
+        }
+        p {
+          padding-right: 50px;
+        }
+      }
+      .about-info {
+        opacity: 0;
+        @include media((
+                grid-row:(xs:inherit, sm:span 2),
+                grid-column:(xs:span 2, sm:auto)
+        ));
+        h3 {
+          font-weight: 700;
+          font-size: 30px;
+          line-height: 36px;
+          margin: 8px 0 10px 0;
+        }
+        p {
+          margin: 0;
+        }
+      }
+      .animateFadeLeft {
+        animation: fadeLeft .5s ease-in-out forwards;
+      }
+      .animateFadeLeftDelay1 {
+        animation-delay: 1s;
+      }
+      .animateFadeLeftDelay2 {
+        animation-delay: 1.2s;
+      }
+      .animateFadeLeftDelay3 {
+        animation-delay: 1.4s;
+      }
+      .animateFadeLeftDelay4 {
+        animation-delay: 1.6s;
+      }
+      .animateFadeLeftDelay5 {
+        animation-delay: 1.8s;
+      }
+      .animateFadeLeftDelay6 {
+        animation-delay: 2.0s;
+      }
+      .animateFadeLeftDelay7 {
+        animation-delay: 2.2s;
+      }
+      .animateFadeLeftDelay8 {
+        animation-delay: 2.4s;
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+import React, {Component} from 'react';
+import './navigationMenu.scss';
+import '../../icons_font.scss';
+
+class NavigationMenu extends Component {
+    pages = [2, 3, 9, 10];
+
+    setActivePage(pageNumber) {
+        let elems = document.getElementsByClassName('menu')[0].children[1].children
+        for (let i = 0; i < elems.length; i++) {
+            elems[i].children[0].classList.remove('active')
+        }
+        let index = this.pages.indexOf(pageNumber);
+
+        if (index !== -1) {
+            elems[index].children[0].classList.add('active');
+        }
+    }
+    toggleIsOpen() {
+        let element = document.getElementsByClassName("menu-icon")[0];
+        element.classList.toggle("is-open");
+
+        let menu = document.getElementsByClassName("menu-grid")[0];
+        menu.classList.toggle("opened")
+    }
+
+    toggleDefault() {
+        let element = document.getElementsByClassName("menu-grid")[0];
+        element.classList.remove('invert')
+    }
+
+    toggleInvert() {
+        let element = document.getElementsByClassName("menu-grid")[0];
+        element.classList.add('invert')
+    }
+
+    render() {
+        return (
+            <nav>
+                <div className="area">
+                    <div className="menu-grid">
+                        <div className='App-logo' onClick={(e) => {this.props.handlePageClick('header'); e.preventDefault(); return false;}} />
+                        <div className={'menu'}>
+                            <div className='App-logo' onClick={(e) => {this.props.handlePageClick('header'); e.preventDefault(); return false;}} />
+                            <ul>
+                                <li><a href="#services" className={'active'} onClick={(e) => {this.props.handlePageClick('services'); e.preventDefault(); return false;}}>Услуги</a></li>
+                                <li><a href="#about" onClick={(e) => {this.props.handlePageClick('about');e.preventDefault();  return false;}}>О компании</a></li>
+                                <li><a href="#clients" onClick={(e) => {this.props.handlePageClick('clients');e.preventDefault();  return false;}}>Клиенты</a></li>
+                                <li><a href="#footer" onClick={(e) => {this.props.handlePageClick('footer');e.preventDefault();  return false;}}>Контакты</a></li>
+                            </ul>
+                        </div>
+                        <button className="menu-icon cross" onClick={this.toggleIsOpen}><span></span></button>
+                    </div>
+                </div>
+            </nav>
+
+        );
+    }
+}
+
+export default NavigationMenu;
