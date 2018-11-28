@@ -76,7 +76,7 @@ class About extends Component {
                             <h3><span>> <ValueAnimator ref={(c) => this.aboutValueAnimators.push(c)}
                                                        className="about-value-animator" duration={1000}
                                                        targetValue={1.5}
-                                                       delay={1800} interval={50}/> млн</span></h3>
+                                                       delay={1800} interval={50}  round={10}/> млн</span></h3>
                             <p>человек охват аудитории</p>
                         </div>
                         <div className="about-info animateFadeLeft animateFadeLeftDelay7">

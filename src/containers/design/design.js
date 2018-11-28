@@ -70,7 +70,7 @@ const Design = props => {
 
                     </div>
                     <div className="expand">
-                        <a href="true">Развернуть</a>
+                        <a id="expand-design" onClick={(e) => {props.onExpandClick(e, 'design');e.preventDefault(); return false}} href="/">Развернуть</a>
                     </div>
                 </div>
             </div>

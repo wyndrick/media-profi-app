@@ -131,6 +131,12 @@ class App extends React.Component {
         this.servicesChangeImage(nextIndex);
     }
 
+    onExpandClick = (ev, id )=> {
+        ev.target.parentElement.classList.toggle("hidden");
+
+        let elem = document.getElementById(id);
+        elem.classList.toggle("expanded")
+    }
     render() {
         return (
             <Main title="Медиа">
@@ -143,7 +149,7 @@ class App extends React.Component {
                                   servicesChangeImage={(index) => this.servicesChangeImage(index)}
                                   onServiceClick={(e, id) => this.goToPage(e, id)}/>
                     <About ref={c => this.pageAbout = c}/>
-                    <Design/>
+                    <Design onExpandClick={this.onExpandClick}/>
                     <Event/>
                     <Site/>
                     <VideoContainer/>

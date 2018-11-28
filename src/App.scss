@@ -8,6 +8,9 @@ textarea:focus, input:focus {
   outline: none;
 }
 
+.hidden{
+  display:none!important;
+}
 $media-direction: min;
 
 // Сетка
@@ -493,17 +496,19 @@ $media-direction: min;
     }
 
     overflow: hidden;
+    &.expanded {
+      overflow-y:scroll;
+    }
 
     .articles {
       display: grid;
       grid-gap: 30px;
       justify-content: center;
-
       @include media((
               grid-template-columns:(xs:minmax(180px, 300px), sm:repeat(3, 1fr))
       ));
       article {
-
+        cursor: pointer;
         &:nth-child(3n) {
           @include media((
                   margin-top:(xs:0, sm:25px)
@@ -521,12 +526,19 @@ $media-direction: min;
           width: 100%;
           object-fit: cover;
         }
+
+        &:hover {
+          a {
+            color:#CC2F31;
+          }
+        }
         h3 {
           margin-top: 20px;
           margin-bottom: 0px;
           font-size: 15px;
           line-height: 18px;
           a {
+            transition:0.5s color ease-out;
             font-weight: 500;
             color: #000000;
             text-decoration: none;
@@ -543,7 +555,10 @@ $media-direction: min;
       }
     }
   }
-
+  .content {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
   &.event {
     position: relative;
     background: #EBEBEB;
@@ -729,6 +744,7 @@ $media-direction: min;
   }
 
   .expand {
+    pointer-events:none;
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -741,6 +757,7 @@ $media-direction: min;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 76%, rgba(255, 255, 255, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0); /* IE6-9 */
     a {
+      pointer-events:auto;
       color: #000000;
       border-bottom: #000000 1px dotted;
       text-decoration: none;

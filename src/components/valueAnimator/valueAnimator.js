@@ -4,9 +4,13 @@ class ValueAnimator extends Component {
 
     initialized = false;
     targetValue = 20;
+    round = 1;
 
     constructor(props) {
         super(props);
+        if (this.props.round !== undefined) {
+            this.round = this.props.round;
+        }
         this.state = {
             value: 0
         }
@@ -31,7 +35,7 @@ class ValueAnimator extends Component {
 
     render() {
         return (
-            <span>{new Intl.NumberFormat('ru-RU').format(Math.floor(this.state.value * 10) / 10)}</span>
+            <span>{new Intl.NumberFormat('ru-RU').format(Math.floor(this.state.value * this.round) / this.round)}</span>
         );
     }
 }
