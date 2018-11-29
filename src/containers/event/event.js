@@ -17,8 +17,8 @@ const Event = props => {
                             и заканчивая его проведением.</p>
                     </div>
                     <div className="articles">
-                        <div className={'articles-block'}>
-                            <article className={'.selected'}>
+                        <div className={'articles-block'} id={"events-articles-list"}>
+                            <article className={'selected'}  onClick={(e) => {props.slideTo(e, 0)}}>
                                 <div className={'wrapper'}>
                                     <img alt="" src={article_img}/>
                                     <div className="event-bottom">
@@ -27,7 +27,7 @@ const Event = props => {
                                     </div>
                                 </div>
                             </article>
-                            <article>
+                            <article  onClick={(e) => {props.slideTo(e, 1)}}>
                                 <div className={'wrapper'}>
                                     <img alt="" src={article_img}/>
                                     <div className="event-bottom">
@@ -37,7 +37,7 @@ const Event = props => {
                                 </div>
 
                             </article>
-                            <article>
+                            <article  onClick={(e) => {props.slideTo(e, 2)}}>
                                 <div className={'wrapper'}>
                                     <img alt="" src={article_img}/>
                                     <div className="event-bottom">
@@ -47,7 +47,7 @@ const Event = props => {
                                     </div>
                                 </div>
                             </article>
-                            <article>
+                            <article  onClick={(e) => {props.slideTo(e, 3)}}>
                                 <div className={'wrapper'}>
                                     <img alt="" src={article_img}/>
                                     <div className="event-bottom">

@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {Component} from 'react'
+import Swipe from 'react-easy-swipe';
+import PaginationList from "../../components/paginationList/paginationList"
 import logo1 from "../../static/images/logo_1.png";
 import logo2 from "../../static/images/logo_2.png";
 import logo3 from "../../static/images/logo_3.png";
@@ -7,38 +9,105 @@ import logo5 from "../../static/images/logo_5.png";
 import logo6 from "../../static/images/logo_6.png";
 import logo7 from "../../static/images/logo_7.png";
 import logo8 from "../../static/images/logo_8.png";
+import logo9 from "../../static/images/logo_9.png";
+import logo10 from "../../static/images/logo_10.png";
+import logo11 from "../../static/images/logo_11.png";
+import logo12 from "../../static/images/logo_12.png";
 
-const Partners = props => {
-    return (
-        <section className="App-service page clients" id={'clients'}>
-            <div className="area">
-                <div className="content">
-                    <div className="content-header">
-                        <h2>НАМ ДОВЕРЯЮТ</h2>
+class Partners extends Component {
+
+    slideListId = 'slide-list';
+
+    currentTransition = "none";
+    onSwipeStart(event) {
+        this.swipeOffset = 0;
+        console.log('Start swiping...', event);
+        this.currentTransition = document.getElementById(this.slideListId).style.transition;
+        document.getElementById(this.slideListId).style.transition = "none"
+        event.preventDefault();
+        return false;
+
+    }
+    swipeOffset = 0;
+    onSwipeMove(position, event) {
+
+        let elem = document.getElementById(this.slideListId);
+
+        const percent = this.paginationList.currentPage * -100 ;
+        elem.style.transform = "translateX(calc(" + percent + "% + "+position.x+"px))";
+        console.log(`Moved ${position.x} pixels horizontally`, event);
+        console.log(`Moved ${position.y} pixels vertically`, event);
+        this.swipeOffset = position.x;
+        event.preventDefault();
+        return false;
+    }
+
+    onSwipeEnd(event) {
+        document.getElementById(this.slideListId).style.transition = this.currentTransition
+        if (this.swipeOffset < -50) {
+            this.paginationList.showPage(event, this.paginationList.currentPage + 1)
+        } else if (this.swipeOffset > 50){
+            this.paginationList.showPage(event, this.paginationList.currentPage - 1)
+        }
+        console.log('End swiping...', event);
+        event.preventDefault();
+        return false;
+    }
+
+    showPage(e, index) {
+        let elem = document.getElementById("slide-list");
+        const percent = index * -100;
+        console.log(index);
+        elem.style.transform = "translateX(" + percent + "%)";
+    }
+    onPartnerClick =(e) => {
+        console.log(this.swipeOffset)
+        if (this.swipeOffset > -10 && this.swipeOffset < 10 ) {
+
+        } else {
+            e.preventDefault();
+            return false;
+        }
+    }
+    render() {
+        return (
+            <section className="App-service page clients" id={'clients'}>
+                <div className="area">
+                    <div className="content">
+                        <div className="content-header">
+                            <h2>НАМ ДОВЕРЯЮТ</h2>
+                        </div>
+                        <Swipe
+                            allowMouseEvents={true}
+                            onSwipeStart={this.onSwipeStart.bind(this)}
+                            onSwipeMove={this.onSwipeMove.bind(this)}
+                            onSwipeEnd={this.onSwipeEnd.bind(this)}>
+                        <div className="clients-page-container">
+                                <div className="clients-page" id={this.slideListId}>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo1}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo2}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo3}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo4}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo6}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo7}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo5}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo8}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo9}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo10}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo11}/></a>
+                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo12}/></a>
+                                </div>
+
+                        </div>
+                        </Swipe>
+                        <PaginationList ref={ (c) => this.paginationList = c} slideListId={this.slideListId} showPage={(e, index) => {
+                            this.showPage(e, index)
+                        }}/>
                     </div>
-                    <div className="clients-page">
-                        <a href="true"><img alt="" src={logo1}/></a>
-                        <a href="true"><img alt="" src={logo2}/></a>
-                        <a href="true"><img alt="" src={logo3}/></a>
-                        <a href="true"><img alt="" src={logo4}/></a>
-                        <a href="true"><img alt="" src={logo6}/></a>
-                        <a href="true"><img alt="" src={logo7}/></a>
-                        <a href="true"><img alt="" src={logo5}/></a>
-                        <a href="true"><img alt="" src={logo8}/></a>
-                        {/*<a href="#"><img src={logo9}/></a>*/}
-                        {/*<a href="#"><img src={logo10}/></a>*/}
-                        {/*<a href="#"><img src={logo11}/></a>*/}
-                        {/*<a href="#"><img src={logo12}/></a>*/}
-                    </div>
-                    <ul className="pagination-list">
-                        <li className="pagination-item active"><a href="true">&nbsp;</a></li>
-                        <li className="pagination-item"><a href="true">&nbsp;</a></li>
-                        <li className="pagination-item"><a href="true">&nbsp;</a></li>
-                    </ul>
                 </div>
-            </div>
-        </section>
-    )
+            </section>
+        )
+    }
 }
 
 export default Partners

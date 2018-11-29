@@ -43,6 +43,7 @@ nav {
 
     .menu {
       div.App-logo {
+        cursor:pointer;
         background: #CC2F31;
         @include media((
                 display:(xs:block, sm:none)
@@ -121,6 +122,7 @@ nav {
     }
 
     div.App-logo {
+      cursor:pointer;
       grid-row: 1;
       grid-column: 1;
       text-decoration: none;

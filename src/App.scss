@@ -8,9 +8,10 @@ textarea:focus, input:focus {
   outline: none;
 }
 
-.hidden{
-  display:none!important;
+.hidden {
+  display: none !important;
 }
+
 $media-direction: min;
 
 // Сетка
@@ -37,6 +38,7 @@ $media-direction: min;
 }
 
 .btn-scroll {
+  cursor: pointer;
   position: relative;
   width: 21px;
   height: 42px;
@@ -100,12 +102,12 @@ $media-direction: min;
   }
 }
 
-.App > div > div > div {
-  @include media((
-          height:(xs:auto !important, sm:100vh !important),
-          min-height:(xs:100vh !important, sm:auto !important)
-  ));
-}
+//.App > div > div > div {
+//  @include media((
+//          height:(xs:auto !important, sm:100vh !important),
+//          min-height:(xs:100vh !important, sm:auto !important)
+//  ));
+//}
 
 .App-header {
   position: relative;
@@ -142,13 +144,15 @@ $media-direction: min;
       //grid-template-areas:(xs:"info" "description" "art" "art", sm:". art" "info art" "description art" "btn-scroll art"),
             grid-template-rows:(xs:150px 200px 1fr, sm:1fr 150px 200px 1fr)
     ));
-    grid-template-columns: 305px 1fr;
+    grid-template-columns: minmax(200px, 305px) 1fr;
 
     .title {
       //grid-area: info;
       font-weight: 700;
-      font-size: 50px;
-      line-height: 52px;
+      @include media((
+              font-size:(xs:40px, sm:50px)
+      ));
+      line-height: 1.2;
       padding-top: 20px;
       margin: 0;
       letter-spacing: 0.05em;
@@ -162,8 +166,10 @@ $media-direction: min;
 
     .description {
       //grid-area: description;
-      font-size: 18px;
-      line-height: 22px;
+      @include media((
+              font-size:(xs:14px, sm:18px)
+      ));
+      line-height: 1.2;
       grid-column: 1;
       @include media((
               grid-row:(xs:2, sm:3),
@@ -174,14 +180,16 @@ $media-direction: min;
       position: relative;
       z-index: 5;
       //grid-area: art;
-      height: 100%;
+      //height: 100%;
       object-fit: contain;
       @include media((
               justify-self:(xs:auto, sm:flex-start, md:flex-start, lg:flex-start, xl:flex-end),
               grid-row:(xs:3, sm:1 / span 4),
               grid-column:(xs:1, sm:2),
+              height:(xs:calc(100vh - 470px), sm:100%),
       ));
       max-height: 100%;
+      min-height: 250px;
     }
     .btn-scroll {
 
@@ -199,6 +207,15 @@ $media-direction: min;
 
 }
 
+.page {
+  grid-template-rows: 80px minmax(0px, 1fr) 80px;
+  align-content: center;
+  .area {
+    margin: auto;
+    grid-row: 2;
+  }
+}
+
 .App-content {
   @include media((
           height:(xs:auto, sm:100vh),
@@ -208,18 +225,29 @@ $media-direction: min;
   display: grid;
   align-items: center;
   &.services {
+    position: relative;
+    z-index: 11;
+    overflow: hidden;
+
     .content {
       display: grid;
       @include media((
               grid-template-columns: (
                       xs:1fr,
-                      sm:1fr 1fr 1fr),
-              grid-template-areas: (
-                      xs:"h" "art" "info",
-                      sm:"h art art" "info info info")
+                      sm:repeat(3, 1fr)),
+              grid-template-rows: (
+                      xs:repeat(3, min-content),
+                      sm:repeat(2, min-content)),
       ));
       .info {
-        grid-area: info;
+        @include media((
+                grid-row: (
+                        xs:inherit,
+                        sm:2),
+                grid-column:(
+                        xs:inherit,
+                        sm:1 / span 3)
+        ));
         overflow-x: hidden;
 
         @include media((
@@ -230,16 +258,19 @@ $media-direction: min;
                         xs:0 -45px,
                         sm:0)
         ));
-        ul {
+        #service-list {
           position: relative;
           display: grid;
           list-style-type: none;
           padding: 0;
-          -webkit-transition: transform 0.5s ease-out;
-          -moz-transition: transform 0.5s ease-out;
-          -o-transition: transform 0.5s ease-out;
-          transition: transform 0.5s ease-out;
+
           @include media((
+                  transition: (
+                          xs:transform 0.5s ease-out,
+                          sm:none),
+                  transform: (
+                          xs:inherit,
+                          sm:none !important),
                   grid-template-columns: (
                           xs:inherit,
                           sm:repeat(3, minmax(0, 1fr))),
@@ -258,19 +289,14 @@ $media-direction: min;
           .service-info {
             padding: 0;
             @include media((
-                    grid-row: (
-                            xs:span 1 / span 2,
-                            sm:inherit),
-                    grid-template-columns:(
-                            xs:1fr 70px,
-                            sm:1fr),
+                    grid-row:(xs:span 1 / span 2, sm:inherit),
+                    grid-template-columns:(xs:1fr 70px, sm:1fr),
                     display:(xs: grid, sm:block)
             ));
             &.info5 {
               @include media((
-                      grid-row: (
-                              xs:span 1 / span 2,
-                              sm:1 / span 2)
+                      grid-row:(xs:span 1 / span 2, sm:1 / span 2),
+                      grid-template-columns:(xs:1fr, sm:1fr),
               ));;
             }
 
@@ -323,21 +349,28 @@ $media-direction: min;
   }
 
   .content-header {
-    grid-area: h;
-    margin-top: 88px;
-    margin-bottom: 70px;
+    grid-row: 1;
+    grid-column: 1;
     p {
-      margin-top: 26px;
+      @include media((
+              margin-top:(xs: 10px, sm:26px)
+      ));
     }
   }
   .service-info-art {
+
     @include media((
             width:(sm:100%, md:655px, lg:660px),
-            justify-self: (xs:center, sm:center)
+            justify-self: (xs:center, sm:center),
+            grid-row: (
+                    xs:2,
+                    sm:1),
+            grid-column:(
+                    xs:1,
+                    sm:2 / span 2)
     ));
 
     align-self: flex-end;
-    grid-area: art;
     display: grid;
     &:nth-child(1) {
       z-index: 1;
@@ -358,9 +391,11 @@ $media-direction: min;
       width: 100%;
       object-fit: cover;
       grid-column: 1;
-      max-height:280px;
       grid-row: 1;
-      opacity:0;
+      opacity: 0;
+      @include media((
+              max-height:(xs: 140px, sm:280px)
+      ));
 
       -webkit-transition: opacity 1s ease-in-out;
       -moz-transition: opacity 1s ease-in-out;
@@ -368,14 +403,17 @@ $media-direction: min;
       transition: opacity 1s ease-in-out;
 
       &.active {
-        opacity:1;
+        opacity: 1;
       }
     }
   }
   h2 {
-    font-size: 40px;
-    line-height: 48px;
-    padding-top: 16px;
+
+    @include media((
+            font-size:(xs:25px, sm:40px),
+            padding-top:(xs:0px, sm:16px)
+    ));
+    line-height: 1.2;
     font-weight: normal;
     margin: 0;
   }
@@ -402,8 +440,12 @@ $media-direction: min;
         .title {
           display: flex;
           font-weight: 700;
+
+          @include media((
+                  font-size:(xs:16px, sm:20px)
+          ));
           font-size: 20px;
-          line-height: 24px;
+          line-height: 1.2;
           color: #000000;
           text-decoration: none;
           position: relative;
@@ -439,8 +481,6 @@ $media-direction: min;
         }
       }
       p {
-        font-size: 15px;
-        line-height: 18px;
         padding-top: 10px;
         margin-bottom: 10px;
       }
@@ -454,7 +494,9 @@ $media-direction: min;
   height: 100vh;
   .content-header {
     text-align: center;
-    padding-top: 20px;
+    @include media((
+            padding-top:(xs:0, sm:20px)
+    ));
     span {
       font-size: 13px;
       line-height: 16px;
@@ -477,15 +519,27 @@ $media-direction: min;
     }
 
     p {
-      font-size: 15px;
-      line-height: 18px;
       margin-bottom: 10px;
       @include media((
-              padding:(xs:7px 0 0 0, sm:7px 105px 0 105px, md:7px 205px 0 205px)
+              padding:(xs:7px 0 0 0, sm:7px 105px 0 105px, md:7px 205px 0 205px),
+              margin:(xs:0 -20px 10px -20px, sm:0 0 10px 0)
       ));
     }
   }
 
+  &.video {
+    video{
+      max-width:100%;
+    }
+    .content-header {
+      h2 {
+        @include media((
+                font-size:(xs:20px, sm:40px),
+                margin:(xs:0 -45px, sm:0)
+        ));
+      }
+    }
+  }
   &.news {
     background: white;
     &.design {
@@ -496,8 +550,11 @@ $media-direction: min;
     }
 
     overflow: hidden;
+    transition: 0.5s height ease-in-out;
+    transition: 0.5s width ease-in-out;
+
     &.expanded {
-      overflow-y:scroll;
+      overflow-y: scroll;
     }
 
     .articles {
@@ -529,7 +586,7 @@ $media-direction: min;
 
         &:hover {
           a {
-            color:#CC2F31;
+            color: #CC2F31;
           }
         }
         h3 {
@@ -538,7 +595,7 @@ $media-direction: min;
           font-size: 15px;
           line-height: 18px;
           a {
-            transition:0.5s color ease-out;
+            transition: 0.5s color ease-out;
             font-weight: 500;
             color: #000000;
             text-decoration: none;
@@ -555,10 +612,6 @@ $media-direction: min;
       }
     }
   }
-  .content {
-    padding-top: 100px;
-    padding-bottom: 100px;
-  }
   &.event {
     position: relative;
     background: #EBEBEB;
@@ -568,16 +621,22 @@ $media-direction: min;
     }
     .articles {
       @include media((
-              width:(xs:240px, sm:auto)
+              width:(xs:200px, sm:auto)
       ));
       .articles-block {
 
         display: grid;
         grid-auto-columns: 100%;
         @include media((
+                transition: (
+                        xs:transform 0.5s ease-in-out,
+                        sm:none),
+                transform: (
+                        xs:inherit,
+                        sm:none !important),
                 grid-template-columns:(xs:inherit, sm:repeat(4, 1fr)),
                 grid-auto-columns: (
-                        xs:minmax(240px, 300px),
+                        xs:minmax(200px, 300px),
                         sm:auto),
                 grid-auto-flow: (
                         xs:column,
@@ -619,6 +678,7 @@ $media-direction: min;
             border-bottom-right-radius: 10px;
             position: relative;
             z-index: 10;
+            height: 65px;
           }
 
           h3 {
@@ -644,6 +704,7 @@ $media-direction: min;
             }
           }
           .more {
+            cursor: pointer;
             color: #ffffff;
             text-decoration: none;
             font-weight: normal;
@@ -714,8 +775,32 @@ $media-direction: min;
               //transition: border 0.2s ease-in-out;
             }
           }
+          @media (max-width: 768px) {
+            &.selected {
+              padding: 0px;
+              .wrapper {
+                border-radius: 10px;
+                -webkit-box-shadow: 6px 8px 45px -7px rgba(0, 0, 0, 0.3);
+                -moz-box-shadow: 6px 8px 45px -7px rgba(0, 0, 0, 0.3);
+                box-shadow: 6px 8px 45px -7px rgba(0, 0, 0, 0.3);
 
-          &.selected, &:hover {
+                &:after {
+                  bottom: -46px;
+                }
+                h3 {
+                  top: -10px;
+                }
+                .more {
+                  color: #ffffff;
+                  opacity: 0.6;
+                  position: relative;
+                  top: 0px;
+                }
+              }
+            }
+          }
+
+          &:hover {
             padding: 0px;
             .wrapper {
               border-radius: 10px;
@@ -744,7 +829,7 @@ $media-direction: min;
   }
 
   .expand {
-    pointer-events:none;
+    pointer-events: none;
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -757,7 +842,7 @@ $media-direction: min;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 76%, rgba(255, 255, 255, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0); /* IE6-9 */
     a {
-      pointer-events:auto;
+      pointer-events: auto;
       color: #000000;
       border-bottom: #000000 1px dotted;
       text-decoration: none;
@@ -774,7 +859,10 @@ $media-direction: min;
 
   &.ar {
     height: 100vh;
-    overflow-y: scroll;
+    @include media((
+            overflow-y:(xs:scroll, sm:hidden),
+            min-height:(xs:100vh, sm:auto)
+    ));
     overflow-x: hidden;
     position: relative;
     //@include media((
@@ -847,7 +935,7 @@ $media-direction: min;
 
       @include media((
               right: (
-                      xs:-200px,
+                      xs:-217px,
                       sm:calc(50% - 544px)
               ),
               bottom: (
@@ -867,23 +955,23 @@ $media-direction: min;
     height: 100vh;
     //padding-bottom: 65px;
     background: #ebebeb;
+    .clients-page-container {
+      overflow-x: hidden;
+    }
     .clients-page {
+      transition: transform 0.5s ease-out;
       text-align: center;
       vertical-align: middle;
       display: grid;
+      grid-auto-flow: column;
+      grid-row: span 1/span 2;
+      grid-auto-columns: 50%;
+      grid-template-rows: 170px 170px;
       @include media((
-              grid-template-columns: (
-                      xs:repeat(2, 1fr),
-                      sm:repeat(3, 1fr),
-                      md:repeat(4, 1fr),
-                      lg:repeat(4, 1fr),
-                      xl:repeat(5, 1fr)
-              ),
-              grid-template-rows: (
-                      xs:170px 170px 170px,
-                      sm:170px 170px 170px,
-                      md:170px 170px,
-                      ld:170px 170px
+              grid-auto-columns: (
+                      xs:50%,
+                      sm:33%,
+                      md:25%
               ),
       ));
       align-content: space-evenly;
@@ -985,8 +1073,11 @@ $media-direction: min;
       grid-area: form;
     }
     h2 {
-      font-size: 40px;
-      line-height: 48px;
+
+      @include media((
+              font-size:(xs:25px, sm:40px)
+      ));
+      line-height: 1.2;
       padding-top: 0px;
       font-weight: normal;
       margin-top: 0px;
@@ -1009,6 +1100,11 @@ $media-direction: min;
       text-align: left;
       grid-column: 1 / span 2;
       justify-self: flex-start;
+      @include media((
+              font-size:(xs:10px, sm:13px),
+              line-height:(xs:1.2),
+              margin:(xs:0, sm:inherit)
+      ));
     }
     .privacy {
       text-align: right;
@@ -1018,15 +1114,18 @@ $media-direction: min;
               justify-self: (xs:flex-start, sm:flex-start, md:flex-end),
       ));
       grid-area: privacy;
-      font-size: 13px;
-      line-height: 16px;
       padding-top: 2px;
       letter-spacing: 0.04em;
       font-family: 'Futura New Book';
 
+      @include media((
+              margin:(xs:0, sm:inherit)
+      ));
       a {
-        font-size: 13px;
-        line-height: 16px;
+        @include media((
+                font-size:(xs:10px, sm:13px),
+                line-height:(xs:1.2)
+        ));
         padding-top: 2px;
         letter-spacing: 0.04em;
         color: rgb(255, 255, 255);
@@ -1041,6 +1140,10 @@ $media-direction: min;
       //grid-template-rows: 270px 60px 114px;
       justify-items: right;
       img {
+
+        @include media((
+                display: (xs:none, sm:block),
+        ));
         grid-area: img;
         max-height: 100%;
         max-width: 100%;
@@ -1052,7 +1155,7 @@ $media-direction: min;
       .contacts {
         @include media((
                 justify-self: (xs:flex-start, sm:inherit, md:inherit),
-                padding: (xs:30px 0, sm:0),
+                padding: (xs:20px 0, sm:0),
         ));
         display: grid;
         grid-area: contacts;
@@ -1069,8 +1172,10 @@ $media-direction: min;
       font-family: "Futura New Book";
 
       color: #ffffff;
-      font-size: 15px;
-      line-height: 18px;
+      @include media((
+              font-size:(xs:12px, sm:15px),
+              line-height:(xs:1.2)
+      ));
 
     }
     #move-to-top {
@@ -1098,8 +1203,8 @@ $media-direction: min;
 .contact-form {
   display: grid;
   grid-gap: 18px 70px;
-  grid-template-rows: repeat(4, 66px);
   @include media((
+          grid-template-rows: (xs:repeat(4, 44px), sm:repeat(4, 66px)),
           grid-template-columns: (xs:1fr, sm:repeat(2, 1fr), md:repeat(2, 1fr)),
           grid-template-areas: (
                   xs:'name' 'phone' 'message' 'button-send',
@@ -1142,8 +1247,10 @@ $media-direction: min;
     color: white;
     font-family: Geometria;
     font-weight: normal;
-    font-size: 15px;
-    line-height: 45px;
+    @include media((
+            font-size:(xs:12px, sm:15px),
+            line-height:(xs:36px, sm:45px)
+    ));
     background: transparent;
 
     &:focus {

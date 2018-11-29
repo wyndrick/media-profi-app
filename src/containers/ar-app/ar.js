@@ -3,7 +3,7 @@ import ar_art from "../../static/images/ar_art.png";
 
 const AR = props => {
     return (
-        <section className="App-service ar" id={'ar'}>
+        <section className="App-service page ar" id={'ar'}>
             <div className="area">
                 <div className="content">
                     <div className="content-header">

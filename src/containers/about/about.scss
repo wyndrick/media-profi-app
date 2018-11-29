@@ -48,7 +48,10 @@ $media-direction: min;
           ));
         }
         p {
-          padding-right: 50px;
+          @include media((
+                  padding-right:(xs:0px, sm:50px)
+          ));
+          font-weight:600;
         }
       }
       .about-info {
@@ -58,9 +61,11 @@ $media-direction: min;
                 grid-column:(xs:span 2, sm:auto)
         ));
         h3 {
+          @include media((
+                  font-size:(xs:24px, sm:30px)
+          ));
           font-weight: 700;
-          font-size: 30px;
-          line-height: 36px;
+          line-height: 1.2;
           margin: 8px 0 10px 0;
         }
         p {
