@@ -8,69 +8,28 @@ const Design = props => {
                 <div className="content">
                     <div className="content-header">
                         <span>01</span>
-                        <h2>ДИЗАЙН</h2>
-                        <p>Дизайн не может ограничиваться рамками экрана и страницы, он нарушает их и
-                            выходит за
-                            пределы. Все наши проекты основываются на пространственном отожествлении
-                            клиента,
-                            привязанном к детальности компании. Правильно подобранный фирменный стиль
-                            сделает
-                            бренд неотразимым и запоминающимся. Учитывая весь накопленный опыта, у нас есть
-                            необходимые знания и возможности, чтобы продумать все мельчайшие детали вашего
-                            стиля</p>
+                        <h2>{props.title}</h2>
+                        <p>{props.desc}</p>
                     </div>
                     <div className="articles">
-                        <article>
-                            <img alt="" src={article_img}/>
-                            <h3><a href="true">Деловая встреча «Подмосковная масленица»</a></h3>
-                            <span className="subtitle">Правительство Московской области</span>
-                            <p>Разработка фирменного стиля делового завтрака с губернатором Московской
-                                облатсти
-                                А.Ю. Воробьевым и представителей бизнеса</p>
-                        </article>
-                        <article>
-                            <img alt="" src={article_img}/>
-                            <h3><a href="true">Всероссийский молодежный инновационный конвент</a></h3>
-                            <span className="subtitle">Федеральное агенство по делам молодежи</span>
-                            <p>Фирменный стиль форума молодых инноваторов, проходившего в технополисе
-                                «Москва»</p>
-                        </article>
-                        <article>
-                            <img alt="" src={article_img}/>
-                            <h3><a href="true">Семинары Fun Education</a></h3>
-                            <span className="subtitle">Молодежный туроператор NeverSleep</span>
-                            <p>Разработка фирменного стиля образовательных семинатов, проходивших в
-                                университетах
-                                и институтах в 10 регионах России</p>
-                        </article>
-                        <article>
-                            <img alt="" src={article_img}/>
-                            <h3><a href="true">Деловая встреча «Подмосковная масленица»</a></h3>
-                            <span className="subtitle">Правительство Московской области</span>
-                            <p>Разработка фирменного стиля делового завтрака с губернатором Московской
-                                облатсти
-                                А.Ю. Воробьевым и представителей бизнеса</p>
-                        </article>
-                        <article>
-                            <img alt="" src={article_img}/>
-                            <h3><a href="true">Всероссийский молодежный инновационный конвент</a></h3>
-                            <span className="subtitle">Федеральное агенство по делам молодежи</span>
-                            <p>Фирменный стиль форума молодых инноваторов, проходившего в технополисе
-                                «Москва»</p>
-                        </article>
-                        <article>
-                            <img alt="" src={article_img}/>
-                            <h3><a href="true">Семинары Fun Education</a></h3>
-                            <span className="subtitle">Молодежный туроператор NeverSleep</span>
-                            <p>Разработка фирменного стиля образовательных семинатов, проходивших в
-                                университетах
-                                и институтах в 10 регионах России</p>
-                        </article>
-
-
+                        {props.works.length > 0
+                            ?
+                            props.works.map((w,k)=>{
+                                return(
+                                    <article key={k}>
+                                        <img alt={w.alt} src={Boolean(w.source) ? w.source : article_img}/>
+                                        <h3><a href={w.href}>{w.title}</a></h3>
+                                        <span className="subtitle">{w.subtitle}</span>
+                                        <p>{w.desc}</p>
+                                    </article>
+                                )
+                            })
+                            :
+                            null
+                        }
                     </div>
                     <div className="expand">
-                        <a id="expand-design" onClick={(e) => {props.onExpandClick(e, 'design');e.preventDefault(); return false}} href="/">Развернуть</a>
+                        <a id="expand-design" onClick={(e) => {props.onExpandClick(e, 'design');e.preventDefault(); return false}} href="/">{props.btnTitle}</a>
                     </div>
                 </div>
             </div>

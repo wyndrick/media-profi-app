@@ -19,79 +19,74 @@ class About extends Component {
                 <div className="area">
                     <div className="content">
                         <div className="content-header">
-                            <h2 className="title">О КОМПАНИИ</h2>
-                            <p className="description">Полученный опыт и знания специалистов компании позволяют
-                                успешно
-                                разрабатывать программное обеспечение в следующих областях Полученный опыт и
-                                знания
-                                специалистов компании позволяют успешно разрабатывать программное обеспечение в
-                                следующих областях</p>
+                            <h2 className="title">{this.props.title}</h2>
+                            <p className="description">{this.props.desc}</p>
                         </div>
 
                         <div className="reward-info">
-                            <img alt="" src={sert}/>
-                            <p>Награда за лучший дизайн</p>
+                            <img alt={this.props.images[0].alt} src={sert}/>
+                            <p>{this.props.images[0].text}</p>
                         </div>
                         <div className="reward-info">
-                            <img alt="" src={sert}/>
-                            <p>Награда за лучший дизайн</p>
+                            <img alt={this.props.images[1].alt} src={sert}/>
+                            <p>{this.props.images[1].text}</p>
                         </div>
 
 
                         <div className="about-info animateFadeLeft animateFadeLeftDelay1">
                             <h3><span>> <ValueAnimator ref={(c) => this.aboutValueAnimators.push(c)}
-                                                       className="about-value-animator" duration={1000} targetValue={40}
+                                                       className="about-value-animator" duration={1000} targetValue={this.props.info[0].value}
                                                        delay={800} interval={50}/></span></h3>
-                            <p>охваченных городов России</p>
+                            <p>{this.props.info[0].text}</p>
                         </div>
                         <div className="about-info animateFadeLeft animateFadeLeftDelay2">
                             <h3><span>> <ValueAnimator ref={(c) => this.aboutValueAnimators.push(c)}
                                                        className="about-value-animator" duration={1000}
-                                                       targetValue={200}
+                                                       targetValue={this.props.info[1].value}
                                                        delay={1000} interval={50}/></span></h3>
-                            <p>работ в дизайне социальных сетей и веб</p>
+                            <p>{this.props.info[1].text}</p>
                         </div>
                         <div className="about-info animateFadeLeft animateFadeLeftDelay3">
                             <h3><span>> <ValueAnimator ref={(c) => this.aboutValueAnimators.push(c)}
                                                        className="about-value-animator" duration={1000}
-                                                       targetValue={800000}
+                                                       targetValue={this.props.info[2].value}
                                                        delay={1200} interval={50}/></span></h3>
-                            <p>экземпляров отпечатано с нашим дизайном</p>
+                            <p>{this.props.info[2].text}</p>
                         </div>
                         <div className="about-info animateFadeLeft animateFadeLeftDelay4">
                             <h3><span><ValueAnimator ref={(c) => this.aboutValueAnimators.push(c)}
                                                      className="about-value-animator" duration={1000}
-                                                     targetValue={150}
+                                                     targetValue={this.props.info[3].value}
                                                      delay={1400} interval={50}/>+</span></h3>
-                            <p>специалистов в команде</p>
+                            <p>{this.props.info[3].text}</p>
                         </div>
                         <div className="about-info animateFadeLeft animateFadeLeftDelay5">
                             <h3><span>> <ValueAnimator ref={(c) => this.aboutValueAnimators.push(c)}
                                                        className="about-value-animator" duration={1000}
-                                                       targetValue={3000}
+                                                       targetValue={this.props.info[4].value}
                                                        delay={1600} interval={50}/></span></h3>
-                            <p>упоминаний в СМИ</p>
+                            <p>{this.props.info[4].text}</p>
                         </div>
                         <div className="about-info animateFadeLeft animateFadeLeftDelay6">
                             <h3><span>> <ValueAnimator ref={(c) => this.aboutValueAnimators.push(c)}
                                                        className="about-value-animator" duration={1000}
-                                                       targetValue={1.5}
+                                                       targetValue={this.props.info[5].value}
                                                        delay={1800} interval={50}  round={10}/> млн</span></h3>
-                            <p>человек охват аудитории</p>
+                            <p>{this.props.info[5].text}</p>
                         </div>
                         <div className="about-info animateFadeLeft animateFadeLeftDelay7">
                             <h3><span>> <ValueAnimator ref={(c) => this.aboutValueAnimators.push(c)}
                                                        className="about-value-animator" duration={1000}
-                                                       targetValue={500000}
+                                                       targetValue={this.props.info[6].value}
                                                        delay={2000} interval={50}/></span></h3>
-                            <p>просмотроы сайта</p>
+                            <p>{this.props.info[6].text}</p>
                         </div>
                         <div className="about-info animateFadeLeft animateFadeLeftDelay8">
                             <h3><span><ValueAnimator ref={(c) => this.aboutValueAnimators.push(c)}
                                                      className="about-value-animator" duration={1000}
-                                                     targetValue={300}
+                                                     targetValue={this.props.info[7].value}
                                                      delay={2200} interval={50}/>+</span></h3>
-                            <p>реализованных проектов</p>
+                            <p>{this.props.info[7].text}</p>
                         </div>
 
                     </div>

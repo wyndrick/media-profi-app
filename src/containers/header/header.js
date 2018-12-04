@@ -7,15 +7,12 @@ const Header = props => {
             <div className="area">
                 <div className={'content'}>
                     <div className="brand-info">
-                        <h1 className="title">МЕДИА
-                            ПРОФИ</h1>
-                        <p className="description">Мы помогаем создавать бренды и предоставляем современные,
-                            бизнес-ориентированные решения, которые помогают достичь поставленных
-                            результатов.</p>
+                        <h1 className="title">{props.title}</h1>
+                        <p className="description">{props.desc}</p>
                         <div className='btn-scroll'>
-                            <div onClick={(e) => {props.goToPage(e, "services"); e.preventDefault(); return false;}}>ПОДРОБНЕЕ</div>
+                            <div onClick={(e) => {props.goToPage(e, "services"); e.preventDefault(); return false;}}>{props.btnTitle}</div>
                         </div>
-                        <img alt="" className={'header-art'} src={header_art}/>
+                        <img alt={props.alt} className={'header-art'} src={Boolean(props.source) ? props.source :header_art}/>
                     </div>
                 </div>
             </div>

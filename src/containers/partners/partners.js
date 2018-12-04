@@ -75,7 +75,7 @@ class Partners extends Component {
                 <div className="area">
                     <div className="content">
                         <div className="content-header">
-                            <h2>НАМ ДОВЕРЯЮТ</h2>
+                            <h2>{this.props.title}</h2>
                         </div>
                         <Swipe
                             allowMouseEvents={true}
@@ -84,18 +84,27 @@ class Partners extends Component {
                             onSwipeEnd={this.onSwipeEnd.bind(this)}>
                         <div className="clients-page-container">
                                 <div className="clients-page" id={this.slideListId}>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo1}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo2}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo3}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo4}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo6}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo7}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo5}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo8}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo9}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo10}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo11}/></a>
-                                    <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo12}/></a>
+                                    {!this.props.images ?
+                                        <React.Fragment>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo1}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo2}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo3}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo4}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo6}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo7}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo5}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo8}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo9}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo10}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo11}/></a>
+                                            <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo12}/></a>
+                                        </React.Fragment>
+                                        :
+                                        this.props.images.map((img,k) => {
+                                            return <a key={k} href={img.href} onClick={this.onPartnerClick.bind(this)}><img alt={img.alt} src={img.source}/></a>
+                                        })
+                                    }
+
                                 </div>
 
                         </div>

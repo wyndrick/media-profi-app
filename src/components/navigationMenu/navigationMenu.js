@@ -72,10 +72,14 @@ class NavigationMenu extends Component {
                         <div className={'menu'}>
                             <div className='App-logo' onClick={(e) => {this.onMenuClick(e, 'header');}} />
                             <ul>
-                                <li><a href="#services" onClick={(e) => {this.onMenuClick(e, 'services');}}>Услуги</a></li>
-                                <li><a href="#about" onClick={(e) => {this.onMenuClick(e, 'about');}}>О компании</a></li>
-                                <li><a href="#clients" onClick={(e) => {this.onMenuClick(e, 'clients');}}>Клиенты</a></li>
-                                <li><a href="#footer" onClick={(e) => {this.onMenuClick(e, 'footer');}}>Контакты</a></li>
+                                {this.props.elements.length > 0
+                                    ?
+                                    this.props.elements.map((element,k)=>{
+                                        return <li key={k}><a href={"#"+element.href} onClick={(e) => {this.onMenuClick(e, element.href);}}>{element.title}</a></li>
+                                    })
+                                    :
+                                    null
+                                }
                             </ul>
                         </div>
                         <button className="menu-icon cross" onClick={this.toggleIsOpen}><span></span></button>

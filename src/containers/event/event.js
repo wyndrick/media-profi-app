@@ -9,54 +9,29 @@ const Event = props => {
 
                     <div className="content-header">
                         <span>02</span>
-                        <h2>EVENT</h2>
-                        <p>Мы обеспечиваем стратегическое планирование и творческое проведение встреч и
-                            событий
-                            различного характера. Мы предлагаем полное руководство и управление программой
-                            мероприятия. Начиная с реализации концепции и обеспечения всей логистики события
-                            и заканчивая его проведением.</p>
+                        <h2>{props.title}</h2>
+                        <p>{props.desc}</p>
                     </div>
                     <div className="articles">
                         <div className={'articles-block'} id={"events-articles-list"}>
-                            <article className={'selected'}  onClick={(e) => {props.slideTo(e, 0)}}>
-                                <div className={'wrapper'}>
-                                    <img alt="" src={article_img}/>
-                                    <div className="event-bottom">
-                                        <h3><a href="true">Социальные проекты</a></h3>
-                                        <a href="true" className="more">ПОДРОБНЕЕ</a>
-                                    </div>
-                                </div>
-                            </article>
-                            <article  onClick={(e) => {props.slideTo(e, 1)}}>
-                                <div className={'wrapper'}>
-                                    <img alt="" src={article_img}/>
-                                    <div className="event-bottom">
-                                        <h3><a href="true">Корпоративные праздники</a></h3>
-                                        <a href="true" className="more">ПОДРОБНЕЕ</a>
-                                    </div>
-                                </div>
-
-                            </article>
-                            <article  onClick={(e) => {props.slideTo(e, 2)}}>
-                                <div className={'wrapper'}>
-                                    <img alt="" src={article_img}/>
-                                    <div className="event-bottom">
-
-                                        <h3><a href="true">Образовательные</a></h3>
-                                        <a href="true" className="more">ПОДРОБНЕЕ</a>
-                                    </div>
-                                </div>
-                            </article>
-                            <article  onClick={(e) => {props.slideTo(e, 3)}}>
-                                <div className={'wrapper'}>
-                                    <img alt="" src={article_img}/>
-                                    <div className="event-bottom">
-                                        <h3><a href="true">Выставки</a></h3>
-                                        <a href="true" className="more">ПОДРОБНЕЕ</a>
-                                    </div>
-                                </div>
-
-                            </article>
+                            {props.works.length > 0
+                                ?
+                                props.works.map((w,k)=>{
+                                    return (
+                                        <article key={k} className={k === 0 ? 'selected': null } onClick={(e) => {props.slideTo(e, k)}}>
+                                            <div className={'wrapper'}>
+                                                <img alt={w.alt} src={Boolean(w.source) ? w.source : article_img}/>
+                                                <div className="event-bottom">
+                                                    <h3><a href="true">{w.title}</a></h3>
+                                                    <a href={w.href} className="more">{w.btnTitle}</a>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    )
+                                })
+                                :
+                                null
+                            }
                         </div>
 
 
