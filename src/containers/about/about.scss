@@ -18,12 +18,13 @@ $media-direction: min;
   //        height:(xs:auto, sm:100vh),
   //        min-height:(xs:100vh, sm:auto)
   //));
-  height: 100vh;
-  overflow-y:scroll;
+  //overflow-y:scroll;
   background: #ffffff;
   display: grid;
   align-items: center;
   &.about {
+    min-height:100vh;
+    height:auto;
     background: #ebebeb;
     .content {
       display: grid;

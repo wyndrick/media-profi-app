@@ -275,6 +275,12 @@ class App extends React.Component {
     }
 
 
+
+
+
+
+
+
     onChangePage = pageNumber => {
         console.log(window.innerWidth)
 
@@ -295,17 +301,17 @@ class App extends React.Component {
                 this.pageID = "about"
                 setTimeout(this.navigationMenu.toggleInvert, timeout)
                 this.pageAbout.onShow();
-                if (window.innerWidth < 768) {
-                    this.addListeners(document.getElementById(this.pageID))
-                }
+                // if (window.innerWidth < 768) {
+                //     this.addListeners(document.getElementById(this.pageID))
+                // }
                 break
             case 4:
                 this.pageID = "design"
                 setTimeout(this.navigationMenu.toggleInvert, timeout)
-                let elemDesign = document.getElementById(this.pageID)
-                if ( elemDesign.classList.contains("expanded")) {
-                    this.addListeners(elemDesign)
-                }
+                // let elemDesign = document.getElementById(this.pageID)
+                // if ( elemDesign.classList.contains("expanded")) {
+                //     this.addListeners(elemDesign)
+                // }
                 break;
             case 5:
                 this.pageID = "event"
@@ -314,10 +320,10 @@ class App extends React.Component {
             case 6:
                 this.pageID = "sites"
                 setTimeout(this.navigationMenu.toggleInvert, timeout)
-                let elemSite = document.getElementById(this.pageID)
-                if ( elemSite.classList.contains("expanded")) {
-                    this.addListeners(elemSite)
-                }
+                // let elemSite = document.getElementById(this.pageID)
+                // if ( elemSite.classList.contains("expanded")) {
+                //     this.addListeners(elemSite)
+                // }
                 break
             case 7:
                 this.pageID = "video"
@@ -326,9 +332,9 @@ class App extends React.Component {
             case 8:
                 this.pageID = "ar"
                 setTimeout(this.navigationMenu.toggleInvert, timeout)
-                if (window.innerWidth < 768) {
-                    this.addListeners(document.getElementById(this.pageID))
-                }
+                // if (window.innerWidth < 768) {
+                //     this.addListeners(document.getElementById(this.pageID))
+                // }
                 break
             case 9:
                 this.pageID = "clients"
@@ -396,6 +402,7 @@ class App extends React.Component {
     }
 
     componentWillMount() {
+        document.addEventListener("load", this.bodyScrollHandler.bind(this));
         try {
             let app = {}
             const db = firebase.firestore();
@@ -416,19 +423,130 @@ class App extends React.Component {
         }
     }
 
+    pages = [
+        'header',
+        'services',
+        'about',
+        'design',
+        'event',
+        'sites',
+        'video',
+        'ar',
+        'clients',
+        'footer'
+    ];
+
+
+    getCoords(elem) {
+        let box = elem.getBoundingClientRect();
+
+        let body = document.body;
+        let docEl = document.documentElement;
+
+        let scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+        let scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+        let clientTop = docEl.clientTop || body.clientTop || 0;
+        let clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+        let top  = box.top +  scrollTop - clientTop;
+        let left = box.left + scrollLeft - clientLeft;
+
+        return {x: Math.round(left),  y: Math.round(top)};
+    }
+
+    scrollToPage(e, pageId, fromBottom = false) {
+        console.log(pageId);
+        let elem = document.getElementById(pageId);
+        let coordinates = this.getCoords(elem);
+        if (fromBottom) {
+            coordinates.y += elem.offsetHeight - window.innerHeight;
+        }
+        this.scrollToPosition(coordinates, 1000);
+        this.onChangePage(this.pages.indexOf(pageId) + 1)
+    }
+
+    scrollToPosition(position, scrollDuration) {
+        let scrollCount = 0,
+            oldTimestamp = performance.now();
+        let delta = 0;
+        let startY = 0;
+        this.scrolling = true;
+        let firstFrame = true;
+        let step = (newTimestamp) => {
+            if (firstFrame) {
+                firstFrame = false;
+                delta = (position.y - window.scrollY);
+                startY = window.scrollY;
+            }
+            scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
+            if (scrollCount >= Math.PI) {
+                window.scrollTo(0, position.y);
+            }
+
+            if (window.scrollY === position.y) {
+                this.scrolling = false;
+                return;
+            }
+
+            window.scrollTo(0, Math.round(startY + delta * (1 - (Math.cos(scrollCount) + 1) / 2)));
+            oldTimestamp = newTimestamp;
+            window.requestAnimationFrame(step);
+        }
+        window.requestAnimationFrame(step);
+    }
+
+    componentDidMount() {
+        this.bodyScrollHandler(null)
+        document.addEventListener('scroll', this.bodyScrollHandler.bind(this));
+        window.addEventListener('resize', this.bodyScrollHandler.bind(this));
+    }
+    scrolling = false;
+    bodyScrollHandler(e){
+         if (!this.scrolling) {
+            this.checkNeedPageScroll(e);
+            console.log(e)
+         }
+    }
+
+    checkNeedPageScroll(e) {
+
+        for (let i = 0; i < this.pages.length; i++ ) {
+            let pageId = this.pages[i]
+            let elem = document.getElementById(pageId);
+            let coords = this.getCoords(elem);
+            // console.log(pageId, coords.y,
+            //      elem.offsetHeight,
+            //     window.scrollY,
+            //     (window.scrollY + window.innerHeight))
+            let pageBottom = coords.y + elem.offsetHeight;
+            let pageTop =  coords.y;
+            // Это когда листаем вниз то верх следующего блока появляеться внизу
+            if (pageTop > window.scrollY + window.innerHeight / 2 && pageTop < (window.scrollY + window.innerHeight) || pageTop == window.scrollY) {
+                //console.log("NEED SCROLL TO" + pageId)
+                this.scrollToPage(e, pageId)
+            }
+            // Это когда листаем вверх то низ следующего блока появляеться вверху и нужно проскроллить на до
+            if (pageBottom > window.scrollY && pageBottom <  (window.scrollY + window.innerHeight / 2)) {
+                //console.log("NEED SCROLL TO" + pageId)
+                this.scrollToPage(e, pageId, true)
+            }
+        }
+    }
+
     render() {
         return (
             <Main title="Медиа">
                 <div className="App">
                     <NavigationMenu ref={c => this.navigationMenu = c}
-                                    handlePageClick={(e, id) => this.goToPage(e, id)}
+                                    handlePageClick={this.scrollToPage.bind(this)}
                                     {...this.state.menu}
                     />
-                    <ReactPageScroller ref={c => {this.reactPageScroll = c;}} pageOnChange={this.onChangePage}>
-                    <Header goToPage={this.goToPage} {...this.state.content.header}/>
+                    {/*<ReactPageScroller ref={c => {this.reactPageScroll = c;}} pageOnChange={this.onChangePage}>*/}
+                    <Header goToPage={this.scrollToPage.bind(this)} {...this.state.content.header}/>
                     <Services slide={(index) => this.servicesSlide(index)}
                               servicesChangeImage={(index) => this.servicesChangeImage(index)}
-                              onServiceClick={(e, id) => this.goToPage(e, id)}
+                              onServiceClick={this.scrollToPage.bind(this)}
                               {...this.state.content.services}
                     />
                     <About ref={c => this.pageAbout = c} {...this.state.content.about}/>
@@ -438,8 +556,8 @@ class App extends React.Component {
                     <VideoContainer {...this.state.content.video}/>
                     <AR {...this.state.content.ar}/>
                     <Partners {...this.state.content.partners}/>
-                    <Contacts goToPage={this.goToPage} {...this.state.content.footer}/>
-                    </ReactPageScroller>
+                    <Contacts goToPage={this.scrollToPage.bind(this)} {...this.state.content.footer}/>
+                    {/*</ReactPageScroller>*/}
                 </div>
             </Main>
         )
