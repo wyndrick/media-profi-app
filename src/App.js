@@ -710,7 +710,7 @@ class App extends React.Component {
             let pageBottom = coords.y + elem.offsetHeight;
             let pageTop = coords.y;
             // Это когда листаем вниз то верх следующего блока появляеться внизу
-            if ((pageTop > window.scrollY + window.innerHeight / 2 && pageTop < (window.scrollY + window.innerHeight))) {
+            if ((pageTop > window.scrollY + window.innerHeight / 2 && pageTop < (window.scrollY + window.innerHeight)) || pageTop === window.scrollY) {
                 //console.log("NEED SCROLL TO" + pageId)
                 this.currentPage = pageId;
                 this.scrollToPage(e, pageId)
