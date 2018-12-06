@@ -465,19 +465,27 @@ class App extends React.Component {
         this.scrollToPosition(coordinates, 1000);
         this.onChangePage(this.pages.indexOf(pageId) + 1)
     }
-
+    needInterrupt = false;
     scrollToPosition(position, scrollDuration) {
         let scrollCount = 0,
             oldTimestamp = performance.now();
         let delta = 0;
         let startY = 0;
+        if (this.scrolling) {
+            this.needInterrupt = true
+        }
         this.scrolling = true;
         let firstFrame = true;
         let step = (newTimestamp) => {
             if (firstFrame) {
+                this.needInterrupt = false
                 firstFrame = false;
                 delta = (position.y - window.scrollY);
                 startY = window.scrollY;
+            } else {
+                if (this.needInterrupt === true) {
+                    return;
+                }
             }
             scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
             if (scrollCount >= Math.PI) {
@@ -491,6 +499,7 @@ class App extends React.Component {
 
             window.scrollTo(0, Math.round(startY + delta * (1 - (Math.cos(scrollCount) + 1) / 2)));
             oldTimestamp = newTimestamp;
+
             window.requestAnimationFrame(step);
         }
         window.requestAnimationFrame(step);
@@ -522,7 +531,7 @@ class App extends React.Component {
             let pageBottom = coords.y + elem.offsetHeight;
             let pageTop =  coords.y;
             // Это когда листаем вниз то верх следующего блока появляеться внизу
-            if (pageTop > window.scrollY + window.innerHeight / 2 && pageTop < (window.scrollY + window.innerHeight) || pageTop == window.scrollY) {
+            if ((pageTop > window.scrollY + window.innerHeight / 2 && pageTop < (window.scrollY + window.innerHeight)) || pageTop === window.scrollY) {
                 //console.log("NEED SCROLL TO" + pageId)
                 this.scrollToPage(e, pageId)
             }
