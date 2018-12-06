@@ -1,6 +1,6 @@
 import React from 'react'
 import icon_contact from "../../static/images/icon_contact.svg";
-import firebase from 'firebase'
+import firebase from '../../firebase'
 
 class Contacts extends React.Component {
 

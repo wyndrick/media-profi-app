@@ -1,7 +1,6 @@
 @import 'mixin';
 
 $media-direction: min;
-
 .App {
   width:100%;
   overflow-x: hidden;
@@ -1298,7 +1297,7 @@ textarea:focus, input:focus {
     outline: inherit;
     display: flex;
     font-size: 12px;
-    line-height: 14px;
+    line-height:33px;
     text-align: right;
 
     justify-self: right;
@@ -1307,12 +1306,11 @@ textarea:focus, input:focus {
       content: '';
       width: 33px;
       height: 33px;
-      margin: -10px 0 0 20px;
+      margin: 0px 0 0 20px;
       border: 1px solid white;
       border-radius: 50%;
       background: url("static/images/right_shevron.svg") no-repeat center center;
       background-size: 6px 12px;
-
     }
   }
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

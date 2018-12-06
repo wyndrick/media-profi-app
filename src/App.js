@@ -23,81 +23,85 @@ class App extends React.Component {
 
     state = {
         content: {
-            about:{
-                title:"О КОМПАНИ",
-                desc:"Полученный опыт и знания специалистов компании позволяют\n" +
+            about: {
+                title: "О КОМПАНИ",
+                desc: "Полученный опыт и знания специалистов компании позволяют\n" +
                     "                                успешно\n" +
                     "                                разрабатывать программное обеспечение в следующих областях Полученный опыт и\n" +
                     "                                знания\n" +
                     "                                специалистов компании позволяют успешно разрабатывать программное обеспечение в\n" +
                     "                                следующих областях",
-                images:[
+                images: [
                     {
-                        alt:"",
-                        text:"Награда за лучший дизайн"
+                        alt: "",
+                        text: "Награда за лучший дизайн"
                     },
                     {
-                        alt:"",
-                        text:"Награда за лучший дизайн"
+                        alt: "",
+                        text: "Награда за лучший дизайн"
                     },
                 ],
-                info:[
-                    {value:40,text:"охваченных городов России"},
-                    {value:200,text:"работ в дизайне социальных сетей и веб"},
-                    {value:800000,text:"экземпляров отпечатано с нашим дизайном"},
-                    {value:150,text:"специалистов в команде"},
-                    {value:3000,text:"упоминаний в СМИ"},
-                    {value:1.5,text:"человек охват аудитории"},
-                    {value:500000,text:"просмотроы сайта"},
-                    {value:300,text:"реализованных проектов"},
+                info: [
+                    {value: 40, text: "охваченных городов России"},
+                    {value: 200, text: "работ в дизайне социальных сетей и веб"},
+                    {value: 800000, text: "экземпляров отпечатано с нашим дизайном"},
+                    {value: 150, text: "специалистов в команде"},
+                    {value: 3000, text: "упоминаний в СМИ"},
+                    {value: 1.5, text: "человек охват аудитории"},
+                    {value: 500000, text: "просмотроы сайта"},
+                    {value: 300, text: "реализованных проектов"},
                 ],
 
             },
-            ar:{
-                title:"ПРИЛОЖЕНИЯ С ДОПОЛНЕННОЙ РЕАЛЬНОСТЬЮ",
-                info:[
-                    {text:`<p>Дополненная реальность (Augmented Reality) — технология интеграции 3D-моделей
+            ar: {
+                title: "ПРИЛОЖЕНИЯ С ДОПОЛНЕННОЙ РЕАЛЬНОСТЬЮ",
+                info: [
+                    {
+                        text: `<p>Дополненная реальность (Augmented Reality) — технология интеграции 3D-моделей
                                 в окружающее пространство рядом с реальными объектами.</p>
                             <p>Всего каких-то несколько лет назад дополненная реальность казалась мечтой
                                 прогрессивных людей о мире, соединяющем мир реальный с виртуальным.</p>
                             <p>Сегодня мы можем предложить профессиональные AR-решения, оперативно
                                 подстраивая
-                                их под потребности наших клиентов.</p>`},
-                    {text:`<p>В наших силах осуществлять проекты любой сложности, начиная с первичного
+                                их под потребности наших клиентов.</p>`
+                    },
+                    {
+                        text: `<p>В наших силах осуществлять проекты любой сложности, начиная с первичного
                                 анализа и разработкой и заканчивая комплексной поставкой и
                                 сопровождением.</p>
                             <p>Мы ориентируемся на долгосрочное сотрудничество, которое будет полезно
                                 обеим сторонам, и поэтому в наших силах предложить разработку AR-решений,
-                                идеально подходящих под потребности наших клиентов.</p>`},
-                    {alt:"",img:""}
+                                идеально подходящих под потребности наших клиентов.</p>`
+                    },
+                    {alt: "", img: ""}
                 ],
             },
-            footer:{
-                title:`СВЯЖИТЕСЬ<br/> С НАМИ`,
-                form:{
-                    inputName:"Как вас зовут?",
-                    inputPhone:"Номер телефона",
-                    inputMessage:"Сообщение",
-                    btnSend:"ОТПРАВИТЬ"
+            footer: {
+                title: `СВЯЖИТЕСЬ<br/> С НАМИ`,
+                form: {
+                    inputName: "Как вас зовут?",
+                    inputPhone: "Номер телефона",
+                    inputMessage: "Сообщение",
+                    btnSend: "ОТПРАВИТЬ"
                 },
-                contacts:{
-                    title:"ООО «МЕДИАПРОФИ»",
-                    phone:"тел.: +7 (495) 531-52-52",
-                    email:{
-                        title:"эл. почта: ",
-                        value:"mediaproffi@mail.ru",
+                contacts: {
+                    title: "ООО «МЕДИАПРОФИ»",
+                    phone: "тел.: +7 (495) 531-52-52",
+                    email: {
+                        title: "эл. почта: ",
+                        value: "mediaproffi@mail.ru",
                     },
                 },
-                policy:{
-                    title:"Политика\n" +
+                policy: {
+                    title: "Политика\n" +
                         "                        конфиденциальности",
-                    source:"https://policies.google.com/privacy?hl=ru&gl=ua",
+                    source: "https://policies.google.com/privacy?hl=ru&gl=ua",
                 },
-                copyright:`&copy; 2005–2018. Все права защищены`,
+                copyright: `&copy; 2005–2018. Все права защищены`,
             },
-            design:{
-                title:"ДИЗАЙН",
-                desc:`Дизайн не может ограничиваться рамками экрана и страницы, он нарушает их и
+            design: {
+                title: "ДИЗАЙН",
+                desc: `Дизайн не может ограничиваться рамками экрана и страницы, он нарушает их и
                             выходит за
                             пределы. Все наши проекты основываются на пространственном отожествлении
                             клиента,
@@ -106,116 +110,225 @@ class App extends React.Component {
                             бренд неотразимым и запоминающимся. Учитывая весь накопленный опыта, у нас есть
                             необходимые знания и возможности, чтобы продумать все мельчайшие детали вашего
                             стиля`,
-                works:[
-                    {href:"",source:"",alt:"",title:"Деловая встреча «Подмосковная масленица»",subtitle:"Правительство Московской области",desc:"Разработка фирменного стиля делового завтрака с губернатором Московской\n" +
+                works: [
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Деловая встреча «Подмосковная масленица»",
+                        subtitle: "Правительство Московской области",
+                        desc: "Разработка фирменного стиля делового завтрака с губернатором Московской\n" +
                             "                                облатсти\n" +
-                            "                                А.Ю. Воробьевым и представителей бизнеса"},
-                    {href:"",source:"",alt:"",title:"Всероссийский молодежный инновационный конвент",subtitle:"Федеральное агенство по делам молодежи",desc:"Фирменный стиль форума молодых инноваторов, проходившего в технополисе\n" +
-                            "                                «Москва»"},
-                    {href:"",source:"",alt:"",title:"Семинары Fun Education",subtitle:"Молодежный туроператор NeverSleep",desc:"Разработка фирменного стиля образовательных семинатов, проходивших в\n" +
+                            "                                А.Ю. Воробьевым и представителей бизнеса"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Всероссийский молодежный инновационный конвент",
+                        subtitle: "Федеральное агенство по делам молодежи",
+                        desc: "Фирменный стиль форума молодых инноваторов, проходившего в технополисе\n" +
+                            "                                «Москва»"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Семинары Fun Education",
+                        subtitle: "Молодежный туроператор NeverSleep",
+                        desc: "Разработка фирменного стиля образовательных семинатов, проходивших в\n" +
                             "                                университетах\n" +
-                            "                                и институтах в 10 регионах России"},
-                    {href:"",source:"",alt:"",title:"Деловая встреча «Подмосковная масленица»",subtitle:"Правительство Московской области",desc:"Разработка фирменного стиля делового завтрака с губернатором Московской\n" +
+                            "                                и институтах в 10 регионах России"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Деловая встреча «Подмосковная масленица»",
+                        subtitle: "Правительство Московской области",
+                        desc: "Разработка фирменного стиля делового завтрака с губернатором Московской\n" +
                             "                                облатсти\n" +
-                            "                                А.Ю. Воробьевым и представителей бизнеса"},
-                    {href:"",source:"",alt:"",title:"Всероссийский молодежный инновационный конвент",subtitle:"Федеральное агенство по делам молодежи",desc:"Фирменный стиль форума молодых инноваторов, проходившего в технополисе\n" +
-                            "                                «Москва»"},
-                    {href:"",source:"",alt:"",title:"Семинары Fun Education",subtitle:"Молодежный туроператор NeverSleep",desc:"Разработка фирменного стиля образовательных семинатов, проходивших в\n" +
+                            "                                А.Ю. Воробьевым и представителей бизнеса"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Всероссийский молодежный инновационный конвент",
+                        subtitle: "Федеральное агенство по делам молодежи",
+                        desc: "Фирменный стиль форума молодых инноваторов, проходившего в технополисе\n" +
+                            "                                «Москва»"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Семинары Fun Education",
+                        subtitle: "Молодежный туроператор NeverSleep",
+                        desc: "Разработка фирменного стиля образовательных семинатов, проходивших в\n" +
                             "                                университетах\n" +
-                            "                                и институтах в 10 регионах России"},
+                            "                                и институтах в 10 регионах России"
+                    },
                 ],
-                btnTitle:"Развернуть",
+                btnTitle: "Развернуть",
             },
-            event:{
-                title:"EVENT",
-                desc:`Мы обеспечиваем стратегическое планирование и творческое проведение встреч и
+            event: {
+                title: "EVENT",
+                desc: `Мы обеспечиваем стратегическое планирование и творческое проведение встреч и
                             событий
                             различного характера. Мы предлагаем полное руководство и управление программой
                             мероприятия. Начиная с реализации концепции и обеспечения всей логистики события
                             и заканчивая его проведением.`,
-                works:[
-                    {alt:"",source:"",href:"",btnTitle:"ПОДРОБНЕЕ",title:"Социальные проекты"},
-                    {alt:"",source:"",href:"",btnTitle:"ПОДРОБНЕЕ",title:"Корпоративные праздники"},
-                    {alt:"",source:"",href:"",btnTitle:"ПОДРОБНЕЕ",title:"Образовательные"},
-                    {alt:"",source:"",href:"",btnTitle:"ПОДРОБНЕЕ",title:"Выставки"},
+                works: [
+                    {alt: "", source: "", href: "", btnTitle: "ПОДРОБНЕЕ", title: "Социальные проекты"},
+                    {alt: "", source: "", href: "", btnTitle: "ПОДРОБНЕЕ", title: "Корпоративные праздники"},
+                    {alt: "", source: "", href: "", btnTitle: "ПОДРОБНЕЕ", title: "Образовательные"},
+                    {alt: "", source: "", href: "", btnTitle: "ПОДРОБНЕЕ", title: "Выставки"},
                 ],
             },
-            header:{
-                title:`МЕДИА
+            header: {
+                title: `МЕДИА
                             ПРОФИ`,
-                desc:`Мы помогаем создавать бренды и предоставляем современные,
+                desc: `Мы помогаем создавать бренды и предоставляем современные,
                             бизнес-ориентированные решения, которые помогают достичь поставленных
                             результатов.`,
-                btnTitle:"ПОДРОБНЕЕ",
-                alt:"",
-                source:""
+                btnTitle: "ПОДРОБНЕЕ",
+                alt: "",
+                source: ""
             },
-            partners:{
-                title:"НАМ ДОВЕРЯЮТ",
-                images:[]
+            partners: {
+                title: "НАМ ДОВЕРЯЮТ",
+                images: []
             },
-            services:{
-                title:"НАШИ УСЛУГИ",
-                desc:"Медиапрофи — креативное агенство с широким спектом услуг,\n" +
+            services: {
+                title: "НАШИ УСЛУГИ",
+                desc: "Медиапрофи — креативное агенство с широким спектом услуг,\n" +
                     "                            работающее с компаниями по всей России.",
-                service:[
-                    {alt:"",src:"",title:"Дизайн",desc:"Мы воплощаем уникальные творческие проекты с учетом специфики и\n" +
+                service: [
+                    {
+                        alt: "",
+                        src: "",
+                        title: "Дизайн",
+                        desc: "Мы воплощаем уникальные творческие проекты с учетом специфики и\n" +
                             "                                        направления\n" +
-                            "                                        деятельности вашей компании."},
-                    {alt:"",src:"",title:"Event",desc:"Специализируемся на продюссировании мероприятий для частных и\n" +
+                            "                                        деятельности вашей компании."
+                    },
+                    {
+                        alt: "",
+                        src: "",
+                        title: "Event",
+                        desc: "Специализируемся на продюссировании мероприятий для частных и\n" +
                             "                                        корпоративных клиентов,\n" +
                             "                                        мы разрабатываем, планируем и управляем каждым проектом от замысла\n" +
                             "                                        до\n" +
-                            "                                        исполнения."},
-                    {alt:"",src:"",title:"Сайты",desc:"Разработанные нами веб-сайты визуально привлекательны и\n" +
+                            "                                        исполнения."
+                    },
+                    {
+                        alt: "",
+                        src: "",
+                        title: "Сайты",
+                        desc: "Разработанные нами веб-сайты визуально привлекательны и\n" +
                             "                                        оптимизированы\n" +
                             "                                        для\n" +
-                            "                                        результатов поиска и специально адаптированные к вашему бренду"},
-                    {alt:"",src:"",title:"Видеопроизводство",desc:"Мы вдыхаем жизнь в утомительную формальность. Мы вдохновим ваших\n" +
+                            "                                        результатов поиска и специально адаптированные к вашему бренду"
+                    },
+                    {
+                        alt: "",
+                        src: "",
+                        title: "Видеопроизводство",
+                        desc: "Мы вдыхаем жизнь в утомительную формальность. Мы вдохновим ваших\n" +
                             "                                        клиентов\n" +
                             "                                        сочетанием\n" +
                             "                                        увлекательных сценариев, высококлассных постановок, привлекательных\n" +
                             "                                        анимаций и\n" +
-                            "                                        уникальных стилей пост-продакшена."},
-                    {alt:"",src:"",title:"Приложения с дополненной\n" +
-                            "                                        реальностью",desc:"Дополненная реальность (AR) является уникальным методом, который ввел\n" +
+                            "                                        уникальных стилей пост-продакшена."
+                    },
+                    {
+                        alt: "",
+                        src: "",
+                        title: "Приложения с дополненной\n" +
+                            "                                        реальностью",
+                        desc: "Дополненная реальность (AR) является уникальным методом, который ввел\n" +
                             "                                        новый класс\n" +
                             "                                        моделирования, нарушая традиционные методы коммуникации и создавая\n" +
                             "                                        инструменты для\n" +
-                            "                                        установления нового необычного контакта с окружающим миром."},
+                            "                                        установления нового необычного контакта с окружающим миром."
+                    },
                 ],
             },
-            site:{
-                title:"САЙТЫ",
-                desc:"Самые впечатляющие веб-сайты основаны на интеллектуальном дизайне, соединяющем в\n" +
+            site: {
+                title: "САЙТЫ",
+                desc: "Самые впечатляющие веб-сайты основаны на интеллектуальном дизайне, соединяющем в\n" +
                     "                            себе четкое видение композиции и применение передовых технологических решений.\n" +
                     "                            Веб-сайт является необходимым инструментом привлечения клиентов для современной\n" +
                     "                            компании. Эффективный, красивый сайт меняет правила игры. Мы разрабатываем\n" +
                     "                            адаптивные сайты с заботой обо всем, начиная с информационной архитектуры и\n" +
                     "                            заканчивая подборкой качественного контента.",
-                works:[
-                    {href:"",source:"",alt:"",title:"Деловая встреча «Подмосковная масленица»",subtitle:"Правительство Московской области",desc:"Разработка фирменного стиля делового завтрака с губернатором Московской\n" +
+                works: [
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Деловая встреча «Подмосковная масленица»",
+                        subtitle: "Правительство Московской области",
+                        desc: "Разработка фирменного стиля делового завтрака с губернатором Московской\n" +
                             "                                облатсти\n" +
-                            "                                А.Ю. Воробьевым и представителей бизнеса"},
-                    {href:"",source:"",alt:"",title:"Всероссийский молодежный инновационный конвент",subtitle:"Федеральное агенство по делам молодежи",desc:"Фирменный стиль форума молодых инноваторов, проходившего в технополисе\n" +
-                            "                                «Москва»"},
-                    {href:"",source:"",alt:"",title:"Семинары Fun Education",subtitle:"Молодежный туроператор NeverSleep",desc:"Разработка фирменного стиля образовательных семинатов, проходивших в\n" +
+                            "                                А.Ю. Воробьевым и представителей бизнеса"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Всероссийский молодежный инновационный конвент",
+                        subtitle: "Федеральное агенство по делам молодежи",
+                        desc: "Фирменный стиль форума молодых инноваторов, проходившего в технополисе\n" +
+                            "                                «Москва»"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Семинары Fun Education",
+                        subtitle: "Молодежный туроператор NeverSleep",
+                        desc: "Разработка фирменного стиля образовательных семинатов, проходивших в\n" +
                             "                                университетах\n" +
-                            "                                и институтах в 10 регионах России"},
-                    {href:"",source:"",alt:"",title:"Деловая встреча «Подмосковная масленица»",subtitle:"Правительство Московской области",desc:"Разработка фирменного стиля делового завтрака с губернатором Московской\n" +
+                            "                                и институтах в 10 регионах России"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Деловая встреча «Подмосковная масленица»",
+                        subtitle: "Правительство Московской области",
+                        desc: "Разработка фирменного стиля делового завтрака с губернатором Московской\n" +
                             "                                облатсти\n" +
-                            "                                А.Ю. Воробьевым и представителей бизнеса"},
-                    {href:"",source:"",alt:"",title:"Всероссийский молодежный инновационный конвент",subtitle:"Федеральное агенство по делам молодежи",desc:"Фирменный стиль форума молодых инноваторов, проходившего в технополисе\n" +
-                            "                                «Москва»"},
-                    {href:"",source:"",alt:"",title:"Семинары Fun Education",subtitle:"Молодежный туроператор NeverSleep",desc:"Разработка фирменного стиля образовательных семинатов, проходивших в\n" +
+                            "                                А.Ю. Воробьевым и представителей бизнеса"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Всероссийский молодежный инновационный конвент",
+                        subtitle: "Федеральное агенство по делам молодежи",
+                        desc: "Фирменный стиль форума молодых инноваторов, проходившего в технополисе\n" +
+                            "                                «Москва»"
+                    },
+                    {
+                        href: "",
+                        source: "",
+                        alt: "",
+                        title: "Семинары Fun Education",
+                        subtitle: "Молодежный туроператор NeverSleep",
+                        desc: "Разработка фирменного стиля образовательных семинатов, проходивших в\n" +
                             "                                университетах\n" +
-                            "                                и институтах в 10 регионах России"},
+                            "                                и институтах в 10 регионах России"
+                    },
                 ],
-                btnTitle:"Развернуть",
+                btnTitle: "Развернуть",
             },
-            video:{
-                title:"ВИДЕОПРОИЗВОДСТВО",
-                desc:"Видео контент о компании является одним из ярчейших способов остановить взор\n" +
+            video: {
+                title: "ВИДЕОПРОИЗВОДСТВО",
+                desc: "Видео контент о компании является одним из ярчейших способов остановить взор\n" +
                     "                            клиента\n" +
                     "                            именно на вас. Наш подход сочетает в себе опыт и страсть с глубоким пониманием\n" +
                     "                            деятельности вашей компании и вашей аудитории. Все это необходимо для того,\n" +
@@ -225,17 +338,17 @@ class App extends React.Component {
                     "                            доводил заложенные мысли к целевой аудитории.",
             },
         },
-        menu:{
-            logo:{
-                alt:"",
-                source:"",
-                href:"",
+        menu: {
+            logo: {
+                alt: "",
+                source: "",
+                href: "",
             },
-            elements:[
-                {title:"Услуги",href:"services"},
-                {title:"О компании",href:"about"},
-                {title:"Клиенты",href:"clients"},
-                {title:"Контакты",href:"footer"},
+            elements: [
+                {title: "Услуги", href: "services"},
+                {title: "О компании", href: "about"},
+                {title: "Клиенты", href: "clients"},
+                {title: "Контакты", href: "footer"},
             ],
         }
     }
@@ -257,28 +370,23 @@ class App extends React.Component {
         e.stopPropagation()
     }
 
-    removeListeners = (element,event) => {
-        if ((event.target.scrollHeight - event.target.scrollTop === event.target.clientHeight && element.id !== "footer") || event.target.scrollTop === 0)
-        {
-            element.removeEventListener("wheel",this.disableHandlePageScroller,false)
-            element.removeEventListener("touchmove",this.disableHandlePageScroller,false)
-            element.removeEventListener("keydown",this.disableHandlePageScroller,false)
-            element.removeEventListener("scroll",this.removeListeners,false)
+    removeListeners = (element, event) => {
+        if ((event.target.scrollHeight - event.target.scrollTop === event.target.clientHeight && element.id !== "footer") || event.target.scrollTop === 0) {
+            element.removeEventListener("wheel", this.disableHandlePageScroller, false)
+            element.removeEventListener("touchmove", this.disableHandlePageScroller, false)
+            element.removeEventListener("keydown", this.disableHandlePageScroller, false)
+            element.removeEventListener("scroll", this.removeListeners, false)
         }
     }
 
     addListeners = (element) => {
-        element.addEventListener("wheel",this.disableHandlePageScroller)
-        element.addEventListener("touchmove",this.disableHandlePageScroller)
-        element.addEventListener("keydown",this.disableHandlePageScroller)
-        element.addEventListener("scroll",(e) => { this.removeListeners(element,e) })
+        element.addEventListener("wheel", this.disableHandlePageScroller)
+        element.addEventListener("touchmove", this.disableHandlePageScroller)
+        element.addEventListener("keydown", this.disableHandlePageScroller)
+        element.addEventListener("scroll", (e) => {
+            this.removeListeners(element, e)
+        })
     }
-
-
-
-
-
-
 
 
     onChangePage = pageNumber => {
@@ -374,7 +482,7 @@ class App extends React.Component {
         this.servicesChangeImage(nextIndex);
     }
 
-    onExpandClick = (ev, id )=> {
+    onExpandClick = (ev, id) => {
         ev.target.parentElement.classList.toggle("hidden");
         let elem = document.getElementById(id);
         this.addListeners(elem);
@@ -409,17 +517,17 @@ class App extends React.Component {
             const settings = {timestampsInSnapshots: true};
             db.settings(settings);
             db.collection('app').get()
-                .then((querySnapshot)=>{
+                .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         app = doc.data()
                     })
                 })
-                .catch((e)=>{
-                    console.log("firebase receive data error: ",e)
+                .catch((e) => {
+                    console.log("firebase receive data error: ", e)
                     app = {}
                 })
-        } catch(e) {
-            console.log("firebase load error: ",e)
+        } catch (e) {
+            console.log("firebase load error: ", e)
         }
     }
 
@@ -449,10 +557,10 @@ class App extends React.Component {
         let clientTop = docEl.clientTop || body.clientTop || 0;
         let clientLeft = docEl.clientLeft || body.clientLeft || 0;
 
-        let top  = box.top +  scrollTop - clientTop;
+        let top = box.top + scrollTop - clientTop;
         let left = box.left + scrollLeft - clientLeft;
 
-        return {x: Math.round(left),  y: Math.round(top)};
+        return {x: Math.round(left), y: Math.round(top)};
     }
 
     scrollToPage(e, pageId, fromBottom = false) {
@@ -465,62 +573,133 @@ class App extends React.Component {
         this.scrollToPosition(coordinates, 1000);
         this.onChangePage(this.pages.indexOf(pageId) + 1)
     }
+
     needInterrupt = false;
+
     scrollToPosition(position, scrollDuration) {
-        let scrollCount = 0,
-            oldTimestamp = performance.now();
-        let delta = 0;
-        let startY = 0;
-        if (this.scrolling) {
-            this.needInterrupt = true
-        }
-        this.scrolling = true;
-        let firstFrame = true;
-        let step = (newTimestamp) => {
-            if (firstFrame) {
-                this.needInterrupt = false
-                firstFrame = false;
-                delta = (position.y - window.scrollY);
-                startY = window.scrollY;
-            } else {
-                if (this.needInterrupt === true) {
+        if (!this.scrolling && !this.touchActive) {
+            let scrollCount = 0,
+                oldTimestamp = performance.now();
+            let delta = 0;
+            let startY = 0;
+            if (this.scrolling) {
+                this.needInterrupt = true
+            }
+            this.scrolling = true;
+            let firstFrame = true;
+            let step = (newTimestamp) => {
+                if (firstFrame) {
+                    this.needInterrupt = false
+                    firstFrame = false;
+                    delta = (position.y - window.scrollY);
+                    startY = window.scrollY;
+                } else {
+                    if (this.needInterrupt === true || this.touchActive === true) {
+                        this.scrolling = false;
+                        return;
+                    }
+                }
+                scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
+                if (scrollCount >= Math.PI) {
+                    window.scrollTo(0, position.y);
+                }
+
+                if (window.scrollY === position.y) {
+                    this.scrolling = false;
                     return;
                 }
-            }
-            scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
-            if (scrollCount >= Math.PI) {
-                window.scrollTo(0, position.y);
-            }
 
-            if (window.scrollY === position.y) {
-                this.scrolling = false;
-                return;
+                window.scrollTo(0, Math.round(startY + delta * (1 - (Math.cos(scrollCount) + 1) / 2)));
+                oldTimestamp = newTimestamp;
+
+                window.requestAnimationFrame(step);
             }
-
-            window.scrollTo(0, Math.round(startY + delta * (1 - (Math.cos(scrollCount) + 1) / 2)));
-            oldTimestamp = newTimestamp;
-
             window.requestAnimationFrame(step);
         }
-        window.requestAnimationFrame(step);
     }
 
+    touchActive = false
+    scrollYStart = 0
+    scrollYPrev = 0
+    scrollYEnd = 0
+    touchStartHandler(e) {
+        console.log(e)
+        this.scrollYStart = window.scrollY;
+        this.scrollYPrev = window.scrollY;
+        this.touchActive = true
+    }
+    touchMoveHandler(e) {
+        if (this.scrollYEnd !== window.scrollY) {
+            this.scrollYPrev = this.scrollYEnd;
+        }
+        this.scrollYEnd = window.scrollY;
+        this.touchActive = true
+    }
+
+
+    touchEndHandler(e) {
+        console.log(e)
+        let scrollYEnd = window.scrollY;
+        this.touchActive = false
+        if (Math.abs(scrollYEnd - this.scrollYPrev) > 10) {
+            let currentPageId = null;
+            for (let i = 0; i < this.pages.length; i++) {
+                let pageId = this.pages[i]
+                let elem = document.getElementById(pageId);
+                let coords = this.getCoords(elem);
+                if (coords.y >= window.scrollY && coords.y < window.scrollY + window.innerHeight) {
+                    currentPageId = pageId;
+                }
+            }
+            console.log(this.scrollYPrev, scrollYEnd)
+            if (currentPageId !== null ) {
+                if(scrollYEnd < this.scrollYPrev) {
+                    let elemIndex = this.clamp(this.pages.indexOf(currentPageId) - 1, 0, this.pages.length - 1);
+                    this.scrollToPage(e, this.pages[elemIndex], true);
+                } else {
+                    this.scrollToPage(e, this.pages[this.pages.indexOf(currentPageId)]);
+                }
+            }
+
+        } else {
+            this.checkNeedPageScroll(e)
+        }
+    }
+
+    clamp(x, min, max) {
+        if ( x < min) {
+            return min;
+        }
+        if (x > max) {
+            return max
+        }
+        return x
+    }
     componentDidMount() {
+
+        window.ontouchstart = this.touchStartHandler.bind(this);
+        window.ontouchmove = this.touchMoveHandler.bind(this);
+        window.ontouchend = this.touchEndHandler.bind(this);
+        window.ontouchcancel = this.touchEndHandler.bind(this);
+
         this.bodyScrollHandler(null)
         document.addEventListener('scroll', this.bodyScrollHandler.bind(this));
         window.addEventListener('resize', this.bodyScrollHandler.bind(this));
     }
+
+
     scrolling = false;
-    bodyScrollHandler(e){
-         if (!this.scrolling) {
+    currentPage = 'header'
+    bodyScrollHandler(e) {
+        if (!this.scrolling) {
             this.checkNeedPageScroll(e);
             console.log(e)
-         }
+        }
     }
 
     checkNeedPageScroll(e) {
 
-        for (let i = 0; i < this.pages.length; i++ ) {
+        for (let i = 0; i < this.pages.length; i++) {
             let pageId = this.pages[i]
             let elem = document.getElementById(pageId);
             let coords = this.getCoords(elem);
@@ -529,15 +708,17 @@ class App extends React.Component {
             //     window.scrollY,
             //     (window.scrollY + window.innerHeight))
             let pageBottom = coords.y + elem.offsetHeight;
-            let pageTop =  coords.y;
+            let pageTop = coords.y;
             // Это когда листаем вниз то верх следующего блока появляеться внизу
-            if ((pageTop > window.scrollY + window.innerHeight / 2 && pageTop < (window.scrollY + window.innerHeight)) || pageTop === window.scrollY) {
+            if ((pageTop > window.scrollY + window.innerHeight / 2 && pageTop < (window.scrollY + window.innerHeight))) {
                 //console.log("NEED SCROLL TO" + pageId)
+                this.currentPage = pageId;
                 this.scrollToPage(e, pageId)
             }
             // Это когда листаем вверх то низ следующего блока появляеться вверху и нужно проскроллить на до
-            if (pageBottom > window.scrollY && pageBottom <  (window.scrollY + window.innerHeight / 2)) {
-                //console.log("NEED SCROLL TO" + pageId)
+            if (pageBottom > window.scrollY + 2 && pageBottom < (window.scrollY + window.innerHeight / 2)) {
+               // console.log("NEED SCROLL TO" + pageId)
+                this.currentPage = pageId;
                 this.scrollToPage(e, pageId, true)
             }
         }

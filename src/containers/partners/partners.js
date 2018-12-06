@@ -69,7 +69,10 @@ class Partners extends Component {
             return false;
         }
     }
+
+
     render() {
+
         return (
             <section className="App-service page clients" id={'clients'}>
                 <div className="area">
@@ -84,7 +87,7 @@ class Partners extends Component {
                             onSwipeEnd={this.onSwipeEnd.bind(this)}>
                         <div className="clients-page-container">
                                 <div className="clients-page" id={this.slideListId}>
-                                    {!this.props.images ?
+                                    {this.props.images.length === 0 ?
                                         <React.Fragment>
                                             <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo1}/></a>
                                             <a href="true" onClick={this.onPartnerClick.bind(this)}><img alt="" src={logo2}/></a>
