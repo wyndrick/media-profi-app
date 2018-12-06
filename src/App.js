@@ -623,46 +623,53 @@ class App extends React.Component {
     scrollYPrev = 0
     scrollYEnd = 0
     touchStartHandler(e) {
+        if (!this.navigationMenu.menuOpened) {
+
         console.log(e)
         this.scrollYStart = window.scrollY;
         this.scrollYPrev = window.scrollY;
         this.touchActive = true
+        }
     }
     touchMoveHandler(e) {
-        if (this.scrollYEnd !== window.scrollY) {
-            this.scrollYPrev = this.scrollYEnd;
+        if (!this.navigationMenu.menuOpened) {
+            if (this.scrollYEnd !== window.scrollY) {
+                this.scrollYPrev = this.scrollYEnd;
+            }
+            this.scrollYEnd = window.scrollY;
+            this.touchActive = true
         }
-        this.scrollYEnd = window.scrollY;
-        this.touchActive = true
     }
 
 
     touchEndHandler(e) {
-        console.log(e)
-        let scrollYEnd = window.scrollY;
-        this.touchActive = false
-        if (Math.abs(scrollYEnd - this.scrollYPrev) > 10) {
-            let currentPageId = null;
-            for (let i = 0; i < this.pages.length; i++) {
-                let pageId = this.pages[i]
-                let elem = document.getElementById(pageId);
-                let coords = this.getCoords(elem);
-                if (coords.y >= window.scrollY && coords.y < window.scrollY + window.innerHeight) {
-                    currentPageId = pageId;
+        if (!this.navigationMenu.menuOpened) {
+            console.log(e)
+            let scrollYEnd = window.scrollY;
+            this.touchActive = false
+            if (Math.abs(scrollYEnd - this.scrollYPrev) > 10) {
+                let currentPageId = null;
+                for (let i = 0; i < this.pages.length; i++) {
+                    let pageId = this.pages[i]
+                    let elem = document.getElementById(pageId);
+                    let coords = this.getCoords(elem);
+                    if (coords.y >= window.scrollY && coords.y < window.scrollY + window.innerHeight) {
+                        currentPageId = pageId;
+                    }
                 }
-            }
-            console.log(this.scrollYPrev, scrollYEnd)
-            if (currentPageId !== null ) {
-                if(scrollYEnd < this.scrollYPrev) {
-                    let elemIndex = this.clamp(this.pages.indexOf(currentPageId) - 1, 0, this.pages.length - 1);
-                    this.scrollToPage(e, this.pages[elemIndex], true);
-                } else {
-                    this.scrollToPage(e, this.pages[this.pages.indexOf(currentPageId)]);
+                console.log(this.scrollYPrev, scrollYEnd)
+                if (currentPageId !== null) {
+                    if (scrollYEnd < this.scrollYPrev) {
+                        let elemIndex = this.clamp(this.pages.indexOf(currentPageId) - 1, 0, this.pages.length - 1);
+                        this.scrollToPage(e, this.pages[elemIndex], true);
+                    } else {
+                        this.scrollToPage(e, this.pages[this.pages.indexOf(currentPageId)]);
+                    }
                 }
-            }
 
-        } else {
-            this.checkNeedPageScroll(e)
+            } else {
+                this.checkNeedPageScroll(e)
+            }
         }
     }
 

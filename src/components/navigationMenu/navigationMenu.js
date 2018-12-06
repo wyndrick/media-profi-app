@@ -30,12 +30,15 @@ class NavigationMenu extends Component {
         }
     }
 
+    menuOpened = false;
+
     toggleIsOpen() {
         let element = document.getElementsByClassName("menu-icon")[0];
         element.classList.toggle("is-open");
 
         let menu = document.getElementsByClassName("menu-grid")[0];
         menu.classList.toggle("opened")
+        this.menuOpened = menu.classList.contains("opened");
     }
 
     hideMenu() {
@@ -44,6 +47,7 @@ class NavigationMenu extends Component {
 
         let menu = document.getElementsByClassName("menu-grid")[0];
         menu.classList.remove("opened")
+        this.menuOpened = false;
     }
 
     toggleDefault() {
@@ -82,7 +86,7 @@ class NavigationMenu extends Component {
                                 }
                             </ul>
                         </div>
-                        <button className="menu-icon cross" onClick={this.toggleIsOpen}><span></span></button>
+                        <button className="menu-icon cross" onClick={this.toggleIsOpen.bind(this)}><span></span></button>
                     </div>
                 </div>
             </nav>
