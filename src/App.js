@@ -337,9 +337,6 @@ class App extends React.Component {
             case 10:
                 this.pageID = "footer"
                 setTimeout(this.navigationMenu.toggleDefault, timeout)
-                if (window.innerWidth < 768) {
-                    this.addListeners(document.getElementById(this.pageID))
-                }
                 break
             default:
                 break

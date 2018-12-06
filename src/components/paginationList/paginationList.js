@@ -69,14 +69,17 @@ class PaginationList extends Component {
         }
 
         let elems = document.getElementById("pagination-list").children;
-        for (let i = 0; i < elems.length; i++) {
-            elems[i].classList.remove("active")
+        if (elems[i] !== undefined) {
+
+            for (let i = 0; i < elems.length; i++) {
+                elems[i].classList.remove("active")
+            }
+            this.props.showPage(e, i);
+            if (e !== undefined) {
+                e.preventDefault();
+            }
+            elems[i].classList.add('active');
         }
-        this.props.showPage(e, i);
-        if (e !== undefined) {
-            e.preventDefault();
-        }
-        elems[i].classList.add('active');
         this.currentPage = i;
         return false;
     }

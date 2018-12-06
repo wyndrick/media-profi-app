@@ -142,7 +142,7 @@ $media-direction: min;
             height:(xs:auto, sm:calc(100vh - 160px)),
             min-height:(xs:calc(100vh - 160px), sm:auto),
       //grid-template-areas:(xs:"info" "description" "art" "art", sm:". art" "info art" "description art" "btn-scroll art"),
-            grid-template-rows:(xs:150px 200px 1fr, sm:1fr 150px 200px 1fr)
+            grid-template-rows:(xs:150px 150px 1fr, sm:1fr 150px 200px 1fr)
     ));
     grid-template-columns: minmax(200px, 305px) 1fr;
 
@@ -558,6 +558,7 @@ $media-direction: min;
     }
 
     .articles {
+      padding-bottom:100px;
       display: grid;
       grid-gap: 30px;
       justify-content: center;
@@ -900,7 +901,7 @@ $media-direction: min;
       display: grid;
       grid-gap: 0 65px;
       margin-top: 62px;
-      font-weight: 500;
+      font-weight: 300;
       font-size: 15px;
       line-height: 18px;
       @include media((
@@ -1015,7 +1016,7 @@ $media-direction: min;
 
 .App-footer {
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
   display: grid;
   align-items: center;
@@ -1122,6 +1123,8 @@ $media-direction: min;
               margin:(xs:0, sm:inherit)
       ));
       a {
+        text-decoration: none;
+        border-bottom:0.5px solid rgba(255, 255, 255, 0.5);
         @include media((
                 font-size:(xs:10px, sm:13px),
                 line-height:(xs:1.2)
@@ -1165,6 +1168,8 @@ $media-direction: min;
         a {
           color: #ffffff;
           font-family: "Futura New Medium";
+          text-decoration: none;
+          border-bottom:0.5px solid rgba(255, 255, 255, 0.5);
         }
       }
 
@@ -1216,13 +1221,21 @@ $media-direction: min;
 
   .input-name {
     grid-area: name;
+    @include media((
+            justify-self:(xs:center, sm:flex-start)
+    ));
   }
   .phone {
     grid-area: phone;
-    justify-self: right;
+    @include media((
+            justify-self:(xs:center, sm:flex-end)
+    ));
   }
   .message {
     grid-area: message;
+    @include media((
+            justify-self:(xs:center, sm:center)
+    ));
   }
   .button-send {
     grid-area: button-send;
@@ -1247,6 +1260,9 @@ $media-direction: min;
     color: white;
     font-family: Geometria;
     font-weight: normal;
+    position: relative;
+    box-sizing: content-box;
+    border-top: 1px solid transparent;
     @include media((
             font-size:(xs:12px, sm:15px),
             line-height:(xs:36px, sm:45px)
@@ -1254,7 +1270,9 @@ $media-direction: min;
     background: transparent;
 
     &:focus {
+      border-top: 2px solid transparent;
       border-bottom: 2px solid white;
+
     }
   }
 

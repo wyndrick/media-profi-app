@@ -1,6 +1,6 @@
 import React from 'react'
 import icon_contact from "../../static/images/icon_contact.svg";
-import firebase from '../../firebase'
+import firebase from 'firebase'
 
 class Contacts extends React.Component {
 
@@ -140,7 +140,6 @@ class Contacts extends React.Component {
         const numbers = this.state.numbers
         const exp = /^[0-9]*$/
         const lastValue = e.target.value.substr(e.target.value.length-1)
-        // console.log("lastValue",lastValue)
 
         if(lastValue.match(exp) && numbers.length < 10){
             numbers.push(lastValue)
@@ -148,7 +147,7 @@ class Contacts extends React.Component {
             // console.log(lastValue)
 
             inputPhone.classList.add("isNotValid")
-        } else if (numbers.length > 0) {
+        } else if (numbers.length < 10) {
             numbers.pop()
             this.changeTemplate(numbers)
 
@@ -172,6 +171,24 @@ class Contacts extends React.Component {
         }
     }
 
+    handlePhoneFocus(e) {
+        let input = e.target;
+        let position = e.target.value.length
+        setTimeout((input, position) => {
+            if (input.setSelectionRange) {
+                input.focus();
+                input.setSelectionRange(position, position);
+            } else if (input.createTextRange) {
+                let range = input.createTextRange();
+                range.collapse(true);
+                range.moveEnd('character', position);
+                range.moveStart('character', position);
+                range.select();
+            }
+        }, 20, input, position)
+
+    }
+
     render() {
         return (
             <footer className="App-footer page" id={'footer'}>
@@ -189,6 +206,7 @@ class Contacts extends React.Component {
                                    placeholder={this.props.inputPhone}
                                    onInput={this.handleInputPhone}
                                    value={this.state.phone}
+                                   onSelect={this.handlePhoneFocus.bind(this)}
                             />
                             <input className={'message'} id="inputMessage"
                                    type={'text'}
@@ -211,9 +229,8 @@ class Contacts extends React.Component {
                         <div
                             id={'move-to-top'}
                             className={'xs-hidden'}
-                            href='#'
                             onClick={(e) => {
-                                this.props.goToPage(0);
+                                this.props.goToPage(e, 'header');
                                 e.preventDefault();
                                 return false;
                             }}/>

@@ -22,6 +22,7 @@ nav {
   .menu-grid {
     display: -webkit-flex;
     display: grid;
+    width:100%;
     @include media((
             padding:(xs:0 0, sm:0)
     ));
@@ -50,7 +51,6 @@ nav {
         ));
         margin-left:45px;
       }
-      justify-self: flex-end;
 
       @include media((
               transition:(xs:transform 0.5s ease-in-out, sm:none),
@@ -60,7 +60,7 @@ nav {
 
       ));
       @include media((
-              display:(xs:grid, sm:flex),
+              display:(xs:grid, sm:grid),
               position:(xs: fixed, sm:relative),
               left:(xs:100%, sm:0),
               width:(xs:100%, sm:auto),
