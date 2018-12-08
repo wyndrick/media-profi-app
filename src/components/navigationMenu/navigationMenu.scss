@@ -2,6 +2,49 @@
 
 $media-direction: min;
 
+
+
+// цвет лого
+$main-logo-color: white; //  главный
+$invert-logo-color: #CC2F31; // инвертированный который внутри класса invert
+$inner-logo-color: #CC2F31; // лого внутри мобайл меню
+
+// цвет шрифта меню
+$main-font-color:white; // главный
+$invert-font-color:black; // инвертированный который внутри класса invert
+$mobile-font-color: black; // цвет шрифта внутри мобайл меню
+
+// цвет бургера
+$main-burger-color:white; // главный
+$inner-burger-color:black; // цвет бургера внутри мобайл меню
+$invert-burger-color:black; // инвертированный который внутри класса invert
+
+
+// цвет подчеркивания меню
+$main-menu-underline-color: white; // главный цвет
+$invert-menu-underline-color: black; // инвертированный который внутри класса invert
+
+// цвет фона мобайл меню
+$mobile-menu-bg-color : #ebebeb;
+
+
+// Сетка
+.area {
+  // Объявляем этот блок flex-контейнером
+  // Центрируем
+  margin-right: auto;
+  margin-left: auto;
+  // Устанавливаем главную ось и многострочность контейнера
+  flex-flow: row wrap; // строка многострочный
+  // Расположение элементов относительно поперечной оси на строке
+  align-items: stretch; // растягиваются
+
+  @include media((
+          width:(sm:750px, md:970px, lg:1088px, xl:1460px),
+          padding:(xs:0 45px, sm:0)
+  ));
+}
+
 nav {
   position: fixed;
   z-index: 25;
@@ -14,7 +57,7 @@ nav {
     content: '';
     right: -100%;
     height: 100%;
-    background-color: #000;
+    background-color:$main-menu-underline-color;
     opacity: 0;
     -webkit-transition: opacity .3s;
     transition: opacity .3s;
@@ -22,7 +65,7 @@ nav {
   .menu-grid {
     display: -webkit-flex;
     display: grid;
-    width:100%;
+    width: 100%;
     @include media((
             padding:(xs:0 0, sm:0)
     ));
@@ -38,18 +81,18 @@ nav {
       }
 
       .menu-icon {
-        border: 1px solid black!important;
+        border: 1px solid $inner-burger-color !important;
       }
     }
 
     .menu {
       div.App-logo {
-        cursor:pointer;
-        background: #CC2F31;
+        cursor: pointer;
+        background: $inner-logo-color;
         @include media((
                 display:(xs:block, sm:none)
         ));
-        margin-left:45px;
+        margin-left: 45px;
       }
 
       @include media((
@@ -57,7 +100,6 @@ nav {
               -webkit-transition:(xs:transform 0.5s ease-in-out, sm:none),
               -moz-transition:(xs:transform 0.5s ease-in-out, sm:none),
               -o-transition:(xs:transform 0.5s ease-in-out, sm:none)
-
       ));
       @include media((
               display:(xs:grid, sm:grid),
@@ -65,7 +107,7 @@ nav {
               left:(xs:100%, sm:0),
               width:(xs:100%, sm:auto),
               height:(xs:100%, sm:auto),
-              background:(xs:#ebebeb, sm:transparent),
+              background:(xs:$mobile-menu-bg-color, sm:transparent),
               grid-row:(xs:1, sm:1),
               grid-template-rows:(xs:120px min-content, sm:120px 200px),
               grid-column:(xs:1 / span 2, sm:2)
@@ -90,7 +132,7 @@ nav {
         a {
           @include media((
                   margin:(xs: 20px 0px 25px 0, sm: 20px 0px 27px 55px),
-                  color:(xs: black, sm: #fff),
+                  color:(xs: $mobile-font-color, sm: $main-font-color),
                   display:(xs:grid, sm:flex),
                   grid-template-columns:(xs:1fr, sm:inherit),
           ));
@@ -108,7 +150,7 @@ nav {
             -o-transition: width 0.5s ease-out;
             transition: width 0.5s ease-out;
             @include media((
-                    background:(xs:transparent!important, sm: #ffffff!important)
+                    background:(xs:transparent !important, sm: $main-menu-underline-color !important)
             ));
           }
           &:hover::before {
@@ -122,7 +164,7 @@ nav {
     }
 
     div.App-logo {
-      cursor:pointer;
+      cursor: pointer;
       grid-row: 1;
       grid-column: 1;
       text-decoration: none;
@@ -132,9 +174,9 @@ nav {
       font-size: 27px;
       &:before {
         content: inherit;
-        color: white;
+        color: $main-logo-color;
       }
-      background: #fff;
+      background: $main-logo-color;
       mask: url(../../static/images/logo.svg) no-repeat;
     }
 
@@ -144,24 +186,24 @@ nav {
     }
     &.invert {
       div.App-logo {
-        background: #CC2F31;
+        background: $invert-logo-color;
         &:before {
-          color: #CC2F31;
+          color: $invert-logo-color;
         }
       }
       ul {
         a {
-          color: black;
+          color: $invert-font-color;
           &:before {
             @include media((
-                    background:(xs:transparent!important, sm: #000000!important)
+                    background:(xs:transparent !important, sm: $invert-menu-underline-color!important)
             ));
           }
         }
       }
 
       .menu-icon {
-        border: 1px solid #CC2F31;
+        border: 1px solid $invert-burger-color;
       }
     }
   }
@@ -171,7 +213,7 @@ $menu-icon-size: 26px;
 $menu-icon-dash-width: 8px; //em(4.5rem, 6rem)
 $menu-icon-dash-height: 1px; //em(0.3rem, 6rem)
 $menu-icon-dash-gutter: $menu-icon-dash-height * 4;
-$menu-icon-dash-color: #ffffff;
+$menu-icon-dash-color: $main-burger-color;
 $menu-icon-dash-border-radius: 0;
 
 %menu-dash {
@@ -189,7 +231,7 @@ $menu-icon-dash-border-radius: 0;
 .opened {
   .menu-icon {
     &:before, &:after {
-      background-color: black!important;
+      background-color: $inner-burger-color !important;
     }
   }
 }
@@ -199,14 +241,13 @@ $menu-icon-dash-border-radius: 0;
   @include media((
           display:(xs:inline-block, sm:none)
   ));
-  grid-area: burger;
   font-size: $menu-icon-size;
   width: 28px;
   height: 28px;
   display: inline-block;
   position: relative;
   background-color: transparent;
-  border: 1px solid white;
+  border: 1px solid $main-burger-color;
 
   padding: 0;
   outline: none;
@@ -236,9 +277,10 @@ $menu-icon-dash-border-radius: 0;
 
 .invert {
   %menu-dash {
-    background: #CC2F31;
+    background: $invert-burger-color ;
   }
 }
+
 // Example 1
 // =============================================
 .cross {

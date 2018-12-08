@@ -57,7 +57,7 @@ class SimplePageScroller extends React.Component {
     scrollToPosition(position, scrollDuration) {
         // если юзер не держит палец на экране тогда можно скроллить страницу,
         // а то будут дикие глюки с прыганием страницы
-        if (!this.touchActive) {
+        if (!this.scrolling && !this.touchActive) {
 
             let scrollCount = 0, // сколько уже проскролили от 1 до -1 (синусоида)
                 oldTimestamp = performance.now(); // время последнего фрейма

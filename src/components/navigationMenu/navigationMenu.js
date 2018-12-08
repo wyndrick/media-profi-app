@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './navigationMenu.scss';
-import '../../icons_font.scss';
 
 class NavigationMenu extends Component {
     pages = {
