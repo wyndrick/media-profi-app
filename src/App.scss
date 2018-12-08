@@ -963,66 +963,7 @@ textarea:focus, input:focus {
     }
   }
 
-  &.clients {
-    height: 100vh;
-    //padding-bottom: 65px;
-    background: #ebebeb;
-    .clients-page-container {
-      overflow-x: hidden;
-    }
-    .clients-page {
-      transition: transform 0.5s ease-out;
-      text-align: center;
-      vertical-align: middle;
-      display: grid;
-      grid-auto-flow: column;
-      grid-row: span 1/span 2;
-      grid-auto-columns: 50%;
-      grid-template-rows: 170px 170px;
-      @include media((
-              grid-auto-columns: (
-                      xs:50%,
-                      sm:33%,
-                      md:25%
-              ),
-      ));
-      align-content: space-evenly;
-      margin-top: 50px;
-      align-items: center;
-      padding-bottom: 20px;
-      a {
-        img {
-          max-width: 100%;
-        }
-      }
-    }
-  }
-}
 
-.pagination-list {
-
-  display: grid;
-  grid-template-columns: 65px;
-  grid-auto-flow: column;
-  padding: 0;
-  grid-gap: 28px;
-  justify-content: center;
-
-  li {
-    display: block;
-    width: 65px;
-    border-bottom: 1px solid #B0B0B0;
-    height: 20px;
-    paddnig: 0 14px;
-    a {
-      text-decoration: none;
-      height: 20px;
-      display: block;
-    }
-    &.active {
-      border-color: #000000;
-    }
-  }
 }
 
 .App-footer {

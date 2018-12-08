@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import './paginationList.scss'
 class PaginationList extends Component {
     lastWindowSize = 0;
     currentPage = 0;

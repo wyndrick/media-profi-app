@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import Swipe from 'react-easy-swipe';
+import './partners.scss';
+
 import PaginationList from "../../components/paginationList/paginationList"
 import logo1 from "../../static/images/logo_1.png";
 import logo2 from "../../static/images/logo_2.png";
