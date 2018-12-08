@@ -121,8 +121,8 @@ textarea:focus, input:focus {
   color: white;
 
   @include media((
-          height:(xs:auto, sm:100vh),
-          min-height:(xs:100vh, sm:auto)
+          height:(xs:100vh, sm:100vh),
+          min-height:(xs:100vh, sm:100vh)
   ));
 
   background: linear-gradient(-168deg, #D13133, #9A1D18);
